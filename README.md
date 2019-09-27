@@ -17,3 +17,7 @@ Run `ng test` to execute the unit tests
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests
+
+## Contribution Policies
+
+1. Create a branch with the 
