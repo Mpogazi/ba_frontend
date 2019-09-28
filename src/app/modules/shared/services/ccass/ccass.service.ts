@@ -6,5 +6,10 @@ export class CcassService {
     constructor(private http: HttpClient) {
 
     }
-
+    /**
+     * Write code for get/post/put/delete requests
+     * Generalize the requests code over any return type
+     * Wrapp every request with a request id
+     * report any request that fails
+     */
 }
