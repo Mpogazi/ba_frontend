@@ -1,0 +1,15 @@
+@import '../../home.component.scss';
+
+.pennapps_title {
+    border: 1px blue;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.authentication {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
