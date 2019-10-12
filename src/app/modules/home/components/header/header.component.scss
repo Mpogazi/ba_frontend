@@ -1,11 +1,12 @@
 @import '../../home.component.scss';
 
-.pennapps_title {
+.ba_title {
     border: 1px blue;
-    background: white;
+    background: black;
     font-size: 16px;
-    color: black;
+    color: white;
     display: flex;
     justify-content: space-around;
+    font-family: Sans-serif;
     align-items: baseline;
 }
