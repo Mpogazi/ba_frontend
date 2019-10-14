@@ -1,1 +1,7 @@
 @import '../../home.component.scss';
+
+:host {
+    margin: $ba_global__gutter;  
+    min-height: 196px; 
+    width: 45%;
+}

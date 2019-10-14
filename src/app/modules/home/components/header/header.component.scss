@@ -6,7 +6,12 @@
     font-size: 16px;
     color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     font-family: Sans-serif;
     align-items: baseline;
+}
+
+.ba_title__logo {
+    border-bottom: 0.1rem solid rgb(239, 19, 29);
+    transition: padding 0.2s ease-in-out 1s;
 }
