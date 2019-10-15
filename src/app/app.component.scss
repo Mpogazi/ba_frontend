@@ -1,5 +1,9 @@
 $ba_global__gutter: 16px;
 
+:host {
+    color: white;
+}
+
 hr {
     display: block;
     margin-top: 0.5em;
