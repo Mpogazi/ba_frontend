@@ -1,1 +1,6 @@
 @import '../../home.component.scss';
+
+:host {
+    min-height: 196px; 
+    width: 45%;
+}

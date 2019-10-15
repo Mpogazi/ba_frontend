@@ -16,3 +16,12 @@ a:hover {
 .ba_home__section {
     color: white;
 }
+
+.ba_home_body {
+    color: white;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: $ba_global__gutter;
+}
