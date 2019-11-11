@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { map,
+        filter,
+} from 'rxjs/operators';
 import { HttpResponseModel,
          Header,
          HttpVerbs,
@@ -8,15 +11,18 @@ import { HttpResponseModel,
 } from './http.model';
 import { ID } from '../../utils/id.utils';
 
-
+/**
+ * NEXT STEPS:
+ *  --> Abstract error handling
+ *  --> Abstract the security settings
+ */
 
 @Injectable()
 export class HttpService {
-    private resp: HttpResponseModel = { responseCode: 'Fail', data: 'Sorry' };
+    // private resp: HttpResponseModel = { responseCode: 'Fail', data: 'Sorry' };
 
     constructor(
         private http: HttpClient,
-        private headers: HttpHeaders,
         private id: ID,
     ) {}
 
@@ -24,31 +30,25 @@ export class HttpService {
         const headers = this.extractHeaders(request);
         switch (request.method) {
             case HttpVerbs.GET:
-                this.get();
+                this.get(request.path, headers);
                 break;
             case HttpVerbs.POST:
-                this.post();
+                this.post(request.path, request.body, headers);
                 break;
             case HttpVerbs.PUT:
-                this.put();
+                this.put(request.path, request.body, headers);
                 break;
             case HttpVerbs.DELETE:
-                this.delete();
+                this.delete(request.path, headers);
                 break;
             case HttpVerbs.PATCH:
-                this.patch();
+                this.patch(request.path, request.body, headers);
                 break;
             case HttpVerbs.HEAD:
-                this.head();
-                break;
-            case HttpVerbs.TRACE:
-                this.trace();
+                this.head(request.path, headers);
                 break;
             case HttpVerbs.OPTIONS:
-                this.options();
-                break;
-            case HttpVerbs.CONNECT:
-                this.connect();
+                this.options(request.path, headers);
                 break;
             default:
                 break;
@@ -66,44 +66,51 @@ export class HttpService {
         return headers;
     }
 
-    private get(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private get(url: string, options: HttpHeaders ): Observable<HttpResponseModel> {
+        return this.http.get(url, {headers: options}).pipe(
+            map(x => this.toResponseModel(x))
+        );
     }
 
-    private post(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private toResponseModel(obj: any): HttpResponseModel {
+        const {code, content} = obj;
+        return ({responseCode: code, data: content} as HttpResponseModel);
     }
 
-    private put(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private post(url: string, body: any, options: HttpHeaders): Observable<HttpResponseModel> {
+        return this.http.post(url, body, { headers: options}).pipe(
+            map(x => this.toResponseModel(x))
+        );
     }
 
-    private delete(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private put(url: string, body: any, options: HttpHeaders): Observable<HttpResponseModel> {
+        return this.http.put(url, body, { headers: options }).pipe(
+            map(x => this.toResponseModel(x))
+        );
     }
 
-    private patch(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private delete(url: string, options: HttpHeaders): Observable<HttpResponseModel> {
+        return this.http.delete(url, { headers: options }).pipe(
+            map(x => this.toResponseModel(x))
+        );
     }
 
-    private update(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private patch(url: string, body: any, options: HttpHeaders): Observable<HttpResponseModel> {
+        return this.http.patch(url, body, { headers: options }).pipe(
+            map(x => this.toResponseModel(x))
+        );
     }
 
-    private head(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private head(url: string, options: HttpHeaders): Observable<HttpResponseModel> {
+        return this.http.head(url, { headers: options }).pipe(
+            map(x => this.toResponseModel(x))
+        );
     }
 
-    private trace(): Observable<HttpResponseModel> {
-        return of(this.resp);
-    }
-
-    private options(): Observable<HttpResponseModel> {
-        return of(this.resp);
-    }
-
-    private connect(): Observable<HttpResponseModel> {
-        return of(this.resp);
+    private options(url: string, options: HttpHeaders): Observable<HttpResponseModel> {
+        return this.http.options(url, { headers: options }).pipe(
+            map(x => this.toResponseModel(x))
+        );
     }
 }
 
