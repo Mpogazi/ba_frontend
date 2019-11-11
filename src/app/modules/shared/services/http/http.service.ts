@@ -1,54 +1,108 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { HttpResponseModel } from './http.model';
+import { HttpResponseModel,
+         Header,
+         HttpVerbs,
+         HttpRequestModel
+} from './http.model';
+import { ID } from '../../utils/id.utils';
+
+
 
 @Injectable()
 export class HttpService {
     private resp: HttpResponseModel = { responseCode: 'Fail', data: 'Sorry' };
-    constructor(private http: HttpClient) {
 
+    constructor(
+        private http: HttpClient,
+        private headers: HttpHeaders,
+        private id: ID,
+    ) {}
+
+    public request(request: HttpRequestModel) {
+        const headers = this.extractHeaders(request);
+        switch (request.method) {
+            case HttpVerbs.GET:
+                this.get();
+                break;
+            case HttpVerbs.POST:
+                this.post();
+                break;
+            case HttpVerbs.PUT:
+                this.put();
+                break;
+            case HttpVerbs.DELETE:
+                this.delete();
+                break;
+            case HttpVerbs.PATCH:
+                this.patch();
+                break;
+            case HttpVerbs.HEAD:
+                this.head();
+                break;
+            case HttpVerbs.TRACE:
+                this.trace();
+                break;
+            case HttpVerbs.OPTIONS:
+                this.options();
+                break;
+            case HttpVerbs.CONNECT:
+                this.connect();
+                break;
+            default:
+                break;
+        }
     }
 
-    public request() {}
+    private extractHeaders(req: HttpRequestModel): HttpHeaders {
+        const options = req.options;
+        const headers = new HttpHeaders();
+        let header: Header;
+        for (header of options) {
+            headers.append(header.key, header.value);
+        }
+        headers.append('request-id', this.id.generate());
+        return headers;
+    }
 
-    public get(): Observable<HttpResponseModel> {
+    private get(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public post(): Observable<HttpResponseModel> {
+    private post(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public put(): Observable<HttpResponseModel> {
+    private put(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public delete(): Observable<HttpResponseModel> {
+    private delete(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public patch(): Observable<HttpResponseModel> {
+    private patch(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public update(): Observable<HttpResponseModel> {
+    private update(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public head(): Observable<HttpResponseModel> {
+    private head(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public trace(): Observable<HttpResponseModel> {
+    private trace(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public options(): Observable<HttpResponseModel> {
+    private options(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 
-    public connect(): Observable<HttpResponseModel> {
+    private connect(): Observable<HttpResponseModel> {
         return of(this.resp);
     }
 }
