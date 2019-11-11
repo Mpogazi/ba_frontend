@@ -1,0 +1,13 @@
+@import '../../home.component.scss';
+
+:host {
+    min-height: 196px;
+    width: 45%;
+    background: #333333;
+    border: 2px solid dimgray;
+}
+
+.ba_authentication {
+    color: white;
+}
+
