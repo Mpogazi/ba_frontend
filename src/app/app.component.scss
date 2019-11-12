@@ -1,8 +1,28 @@
+/* COLORS FOR USE. */
+// // for backgrounds
+$ba-darker-background: #000000;
+$ba-dark-background: #1B2A32;
+$ba-light-background: #485764;
+$ba-button-hover: red;
+
+// for typography
+$ba-typography-white-color: #ffffff;
+$ba-typography-dark-color: #8f9ba3;
+$ba-typography-light-color:#E9ECEF;
+
+// for alerts
+$ba-alert-danger: #f54f47;
+$ba-alert-warning: #fdd006;
+$ba-alert-info: #60b515;
+
+/* FONTS USED BY BA*/
+$ba-default-fontSize: 16px;
 $ba_global__gutter: 16px;
 
 :host {
     color: white;
 }
+
 
 hr {
     display: block;
