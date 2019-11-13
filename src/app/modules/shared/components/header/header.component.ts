@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 
 export class HomeHeaderComponent {
     public title = 'BOWEN ANALYTICS';
+    private navbarOpen  = false;
+
+    public toggleNavbar() {
+        this.navbarOpen = !this.navbarOpen;
+    }
+
+
 }

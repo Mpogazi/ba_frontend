@@ -1,31 +1,50 @@
-<div class="ba_title">
-    <div class="ba_title__logo">
-        <a>
-            <h1><span class="red">Bowen | </span>Analytics</h1>
-        </a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="">
+        <span class="red">Bowen | </span>Analytics
+    </a>
+    <button class="navbar-toggler" 
+            type="button"
+            (click)="toggleNavbar()"
+            data-toggle="collapse"
+            data-target="#navbar1">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse justify-content-stretch" 
+         id="navbar1"
+         [ngClass]="{'show': navbarOpen}">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a  class="ba_app_link nav-link" 
+                    routerLink="" 
+                    routerLinkActive="active">
+                    Home <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="ba_app_link nav-link" 
+                   routerLink="/about" 
+                   routerLinkActive="active">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="ba_app_link nav-link" 
+                   routerLink="/education" 
+                   routerLinkActive="active">Education</a>
+            </li>
+            <li class="nav-item">
+                <a class="ba_app_link nav-link" 
+                   routerLink="/team" 
+                   routerLinkActive="active">Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="ba_app_link nav-link" 
+                   routerLink="/blog" 
+                   routerLinkActive="active">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="ba_app_link nav-link" 
+                   routerLink="/careers" 
+                   routerLinkActive="active">Careers</a>
+            </li>
+        </ul>
     </div>
-    <div class="Header_desktop__container">
-        <nav class="Header_desktop_nav">
-            <ul class="ba_desktop__headerli">
-                <li>
-                    <a>Home</a>
-                </li>
-                <li>
-                    <a>About</a>
-                </li>
-                <li>
-                    <a>Education</a>
-                </li>
-                <li>
-                    <a>Team</a>
-                </li>
-                <li>
-                    <a>Blog</a>
-                </li>
-                <li>
-                    <a>Careers</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
+</nav>
