@@ -1,9 +1,5 @@
 <section>
-	<app-header-component></app-header-component>
-	<span class="ba_home_body">
-		<app-authentication-component></app-authentication-component>
-		<app-description-component></app-description-component>
-	</span>
-	<hr>
+	<app-header-component [navList]="navList"></app-header-component>
+	<router-outlet></router-outlet>
 	<app-footer-component></app-footer-component>
 </section>
