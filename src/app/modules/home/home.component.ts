@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
     styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent { }
+export class HomeComponent {
+    public navList = [
+        { link: '', name: 'Home' },
+        { link: '/about', name: 'About' },
+        { link: '/education', name: 'Education' },
+        { link: '/team', name: 'Team' },
+        { link: '/blog', name: 'Blog' },
+        { link: '/careers', name: 'Careers' }
+    ];
+}
 

@@ -13,37 +13,13 @@
          id="navbar1"
          [ngClass]="{'show': navbarOpen}">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a  class="ba_app_link nav-link" 
-                    routerLink="" 
-                    routerLinkActive="active">
-                    Home <span class="sr-only">(current)</span>
+            <li *ngFor="let navElem of navList; trackBy: trackByFn;"
+                class="nav-item">
+                <a class="nav-link"
+                   routerLink="{{navElem.link}}" 
+                   routerLinkActive="active"
+                   >{{navElem.name}}
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="ba_app_link nav-link" 
-                   routerLink="/about" 
-                   routerLinkActive="active">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="ba_app_link nav-link" 
-                   routerLink="/education" 
-                   routerLinkActive="active">Education</a>
-            </li>
-            <li class="nav-item">
-                <a class="ba_app_link nav-link" 
-                   routerLink="/team" 
-                   routerLinkActive="active">Team</a>
-            </li>
-            <li class="nav-item">
-                <a class="ba_app_link nav-link" 
-                   routerLink="/blog" 
-                   routerLinkActive="active">Blog</a>
-            </li>
-            <li class="nav-item">
-                <a class="ba_app_link nav-link" 
-                   routerLink="/careers" 
-                   routerLinkActive="active">Careers</a>
             </li>
         </ul>
     </div>
