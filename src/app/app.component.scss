@@ -43,3 +43,16 @@ hr {
 .ba_app-font__lg {
     font-size: 24px
 }
+
+a {
+    color: white !important;
+}
+
+a.ba-links:hover {
+    color: red !important;
+    cursor: pointer;
+}
+
+.ba-router_active {
+    color: red !important;
+}
