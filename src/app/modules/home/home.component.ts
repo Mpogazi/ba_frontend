@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 
 export class HomeComponent {
     public navList = [
-        { link: 'home', name: 'Home' },
+        { link: '/home', name: 'Home' },
         { link: '/about', name: 'About' },
         { link: '/education', name: 'Education' },
         { link: '/team', name: 'Team' },
