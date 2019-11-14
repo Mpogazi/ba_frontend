@@ -15,9 +15,9 @@
         <ul class="navbar-nav ml-auto">
             <li *ngFor="let navElem of navList; trackBy: trackByFn;"
                 class="nav-item">
-                <a class="nav-link"
+                <a class="ba-links nav-link"
                    routerLink="{{navElem.link}}" 
-                   routerLinkActive="active"
+                   routerLinkActive="ba-router_active"
                    >{{navElem.name}}
                 </a>
             </li>
