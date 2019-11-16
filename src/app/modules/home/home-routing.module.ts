@@ -9,7 +9,7 @@ import { TeamComponent } from './components/team/team.component';
 import { HomeComponent } from './home.component';
 
 const routes: Routes = [
-    { path: '**', component: HomeComponent,
+    { path: 'home', component: HomeComponent,
     children: [
         { path: 'about', component: AboutComponent },
         { path: 'education', component: EducationComponent },
