@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { HomeModule } from './modules/home/home.module';
 
 
@@ -17,6 +18,7 @@ import { HomeModule } from './modules/home/home.module';
     BrowserModule,
     BrowserAnimationsModule,
     HomeModule,
+    DashboardModule,
     AppRoutingModule,
     NgbModule
   ],
