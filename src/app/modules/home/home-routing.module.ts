@@ -16,7 +16,8 @@ const routes: Routes = [
         { path: 'team', component: TeamComponent },
         { path: 'blog', component: BlogComponent },
         { path: 'careers', component: CareersComponent }
-    ]}
+    ]},
+    { path: 'home/home', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
