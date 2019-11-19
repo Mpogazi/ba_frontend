@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
+import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 
 const components = [
@@ -16,6 +17,7 @@ const components = [
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    SharedModule,
     BrowserModule,
   ]
 })

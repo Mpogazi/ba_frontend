@@ -31,9 +31,9 @@ const components = [
 @NgModule({
     imports: [
         CommonModule,
+        SharedModule,
         HomeRoutingModule,
         BrowserModule,
-        SharedModule,
         BrowserAnimationsModule
     ],
     declarations: [...components],
