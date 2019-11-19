@@ -4,10 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeRoutingModule } from './home-routing.module';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { SharedModule } from '../shared/shared.module';
 
 // Components
-import { HomeFooterComponent } from '../shared/components/footer/footer.component';
-import { HomeHeaderComponent } from '../shared/components/header/header.component';
 import { AboutComponent } from './components/about/about.component';
 import { HomeAuthenticationComponent
 } from './components/authentication/authentication.component';
@@ -20,8 +19,6 @@ import { HomeComponent } from './home.component';
 
 const components = [
     HomeComponent,
-    HomeHeaderComponent,
-    HomeFooterComponent,
     HomeAuthenticationComponent,
     HomeDescriptionComponent,
     AboutComponent,
@@ -34,12 +31,13 @@ const components = [
 @NgModule({
     imports: [
         CommonModule,
+        SharedModule,
         HomeRoutingModule,
         BrowserModule,
         BrowserAnimationsModule
     ],
     declarations: [...components],
-    bootstrap: [ HomeComponent ]
+    bootstrap: [HomeComponent]
 })
 
 export class HomeModule {}

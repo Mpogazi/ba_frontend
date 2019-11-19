@@ -6,7 +6,8 @@ import { HomeComponent } from './modules/home/home.component';
 
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    // For dvpt purposes. Please take it back to home.
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'dashboard', component: DashboardComponent}
 ];
