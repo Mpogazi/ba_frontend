@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,10 +21,7 @@ const components = [
     ],
     declarations: [...components],
     bootstrap: [],
-    exports: [...components],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-    ]
+    exports: [...components]
 })
 
 export class SharedModule { }
