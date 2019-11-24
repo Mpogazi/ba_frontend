@@ -1,5 +1,10 @@
 <section>
-    <app-header-component [navList]="navList"></app-header-component>
-    <router-outlet></router-outlet>
-    <app-footer-component></app-footer-component>
+    <div class="container-fluid">
+        <app-header-component [navList]="navList"></app-header-component>
+        <app-search-box></app-search-box>
+        <app-volume class="m-2"></app-volume>
+        <app-ownership-graph class="m-2"></app-ownership-graph>
+        <app-owners class="m-2"></app-owners>
+        <app-footer-component></app-footer-component>
+    </div>
 </section>

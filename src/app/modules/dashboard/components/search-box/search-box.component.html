@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <form [formGroup]="searchForm"
+          (ngSubmit)="onSubmit()"
+          class="d-flex flex-column justify-content-between flex-md-row flex-lg-row flex-xl-row">
+        <div class="d-flex flex-sm-row">
+            <div class="m-2">
+                <input type="Code" 
+                        class="form-control"
+                        formControlName="stockCode" 
+                        id="inputCode" 
+                        placeholder="Code"
+                        [ngClass]="{'is-invalid': submitted && f.stockCode.errors}">
+            </div>
+            <div class="input-group m-2">
+                <input class="form-control"
+                        formControlName="startDate"
+                        name="dp" 
+                        placeholder="yyyy-mm-dd" 
+                        [(ngModel)]="model1" 
+                        ngbDatepicker 
+                        #a="ngbDatepicker"
+                        [minDate]="dates.startDate"
+                        [maxDate]="dates.endDate"
+                        [ngClass]="{'is-invalid': submitted && f.startDate.errors}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar"
+                            id="inputGroup-sizing-sm" 
+                            (click)="a.toggle()" 
+                            type="button">
+                        <fa-icon [icon]="icon"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="input-group m-2">
+                <input class="form-control"
+                        name="dp"
+                        formControlName="endDate"
+                        placeholder="yyyy-mm-dd" 
+                        [(ngModel)]="model2" 
+                        ngbDatepicker 
+                        #d="ngbDatepicker"
+                        [minDate]="dates.startDate"
+                        [maxDate]="dates.endDate"
+                        [ngClass]="{'is-invalid': submitted && f.endDate.errors}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                        <fa-icon [icon]="icon"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="m-2">
+            <button type="button" (click)="onSubmit()" class="btn btn-danger">Load</button>
+        </div>
+    </form>  
+</div>
