@@ -16,6 +16,8 @@ import { HomeDescriptionComponent } from './components/description/description.c
 import { EducationComponent } from './components/education/education.component';
 import { TeamComponent } from './components/team/team.component';
 import { HomeComponent } from './home.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const components = [
     HomeComponent,
@@ -25,7 +27,9 @@ const components = [
     EducationComponent,
     TeamComponent,
     BlogComponent,
-    CareersComponent
+    CareersComponent,
+    LoginComponent,
+    SignupComponent
 ];
 
 @NgModule({
