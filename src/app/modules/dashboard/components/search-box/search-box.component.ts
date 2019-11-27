@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -31,7 +31,7 @@ export class SearchBoxComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder
     ) {}
-    
+
     ngOnInit() {
         this.searchForm = this.formBuilder.group({
             stockCode: ['', Validators.required],
@@ -44,7 +44,7 @@ export class SearchBoxComponent implements OnInit {
     get f() { return this.searchForm.controls; }
 
     onSubmit() {
-        console.log("submitted");
+        console.log('submitted');
         this.submitted = true;
         if (this.searchForm.invalid) {
             return;
