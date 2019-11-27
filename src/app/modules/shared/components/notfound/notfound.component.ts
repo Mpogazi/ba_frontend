@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotfoundComponent implements OnInit {
     public navList = [
-        { link: '/home', name: 'Home' },
         { link: '/home/about', name: 'About' },
         { link: '/home/education', name: 'Education' },
         { link: '/home/team', name: 'Team' },
