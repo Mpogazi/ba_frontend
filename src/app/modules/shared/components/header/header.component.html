@@ -14,7 +14,7 @@
          [ngClass]="{'show': navbarOpen}">
         <ul class="navbar-nav ml-auto">
             <li *ngFor="let navElem of navList; trackBy: trackByFn;"
-                class="nav-item">
+                class="nav-item lead">
                 <a class="ba-links nav-link"
                    routerLink="{{navElem.link}}"
                    >{{navElem.name}}

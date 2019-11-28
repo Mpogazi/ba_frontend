@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ParticlesModule } from 'angular-particle';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,7 @@ import { HomeModule } from './modules/home/home.module';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
+    ParticlesModule,
     HomeModule,
     DashboardModule,
     AppRoutingModule,

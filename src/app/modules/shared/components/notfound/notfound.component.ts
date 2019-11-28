@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-home-component',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    selector: 'app-notfound',
+    templateUrl: './notfound.component.html',
+    styleUrls: ['./notfound.component.scss']
 })
-
-export class HomeComponent {
+export class NotfoundComponent implements OnInit {
     public navList = [
         { link: '/home/about', name: 'About' },
         { link: '/home/education', name: 'Education' },
@@ -16,4 +15,10 @@ export class HomeComponent {
         { link: '/home/login', name: 'Login' },
         { link: '/home/signup', name: 'Signup' }
     ];
+    constructor() { }
+
+    ngOnInit() {
+
+    }
+
 }
