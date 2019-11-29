@@ -6,12 +6,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HomeFooterComponent } from './components/footer/footer.component';
 import { HomeHeaderComponent } from './components/header/header.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SharedRoutingModule } from './shared-routing.module';
 
 const components = [
     HomeHeaderComponent,
     HomeFooterComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    SpinnerComponent
 ];
 
 @NgModule({
