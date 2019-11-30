@@ -7,8 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class SpinnerComponent implements OnInit {
+    @Input() message: string;
+    @Input() showSpinner: boolean;
+    @Input() fullScreen: boolean;
 
-    @Input() message = '';
     constructor() { }
 
     ngOnInit() {}
