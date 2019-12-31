@@ -1,11 +1,60 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { NgxSpinner, PRIMARY_SPINNER, Spinner } from '../../enum/spinner/spinner.enum';
 
 @Injectable({
-    providedIn: 'root'
+	providedIn: 'root'
 })
-export class SpinnerService {
-    private overlayRef: OverlayRef = null;
-
-    constructor(private overlay: Overlay) {}
+export class NgxSpinnerService {
+	/**
+	 * Spinner observable
+	 *
+	 * @memberof NgxSpinnerService
+	 */
+	private spinnerObservable = new ReplaySubject<NgxSpinner>(1);
+	/**
+	 * Creates an instance of NgxSpinnerService.
+	 * @memberof NgxSpinnerService
+	 */
+	constructor() { }
+	/**
+	* Get subscription of desired spinner
+	* @memberof NgxSpinnerService
+	**/
+	getSpinner(name: string): Observable<NgxSpinner> {
+		return this.spinnerObservable.asObservable().pipe(filter((x: NgxSpinner) => x && x.name === name));
+	}
+	/**
+	 * To show spinner
+	 *
+	 * @memberof NgxSpinnerService
+	 */
+	show(name: string = PRIMARY_SPINNER, spinner?: Spinner) {
+		const showPromise = new Promise((resolve, _reject) => {
+			if (spinner && Object.keys(spinner).length) {
+				spinner['name'] = name;
+				this.spinnerObservable.next(new NgxSpinner({ ...spinner, show: true }));
+				resolve(true);
+			} else {
+				this.spinnerObservable.next(new NgxSpinner({ name, show: true }));
+				resolve(true);
+			}
+		});
+		return showPromise;
+	}
+	/**
+	* To hide spinner
+	*
+	* @memberof NgxSpinnerService
+	*/
+	hide(name: string = PRIMARY_SPINNER, debounce: number = 0) {
+		const hidePromise = new Promise((resolve, _reject) => {
+			setTimeout(() => {
+				this.spinnerObservable.next(new NgxSpinner({ name, show: false }));
+				resolve(true);
+			}, debounce);
+		});
+		return hidePromise;
+	}
 }

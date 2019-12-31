@@ -1,9 +1,9 @@
-<div class="wrapper" class="ba_element__centered">
-    <div *ngIf="showSpinner">
-        <div class="spinner-wrapper">
-            <div>
-                <div class="loader">{{ message }}</div>
-            </div>
-        </div>
+<div [@fadeIn]="'in'" *ngIf="spinner.show" class="overlay" [style.background-color]="spinner.bdColor"
+    [style.z-index]="spinner.zIndex" [style.position]="spinner.fullScreen ? 'fixed' : 'absolute'">
+    <div [class]="spinner.class" [style.color]="spinner.color">
+        <div *ngFor="let index of spinner.divArray"></div>
+    </div>
+    <div class="loading-text" [style.z-index]="spinner.zIndex">
+        <ng-content></ng-content>
     </div>
 </div>
