@@ -24,6 +24,18 @@ $ba_global__gutter: 16px;
     color: white;
 }
 
+.loading {
+    color: white;
+    padding-top: 80px;
+}
+
+.card-body {
+    min-height: 300px;
+}
+
+.ba-raise_element {
+    z-index: 3;
+}
 
 hr {
     display: block;
@@ -46,7 +58,7 @@ hr {
 
 
 .red {
-	color: red
+	color: #ff0000
 }
 
 .ba_app-font__lg {
