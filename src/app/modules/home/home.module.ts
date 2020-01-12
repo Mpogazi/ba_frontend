@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { TeamComponent } from './components/team/team.component';
 import { HomeComponent } from './home.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const components = [
     HomeComponent,
@@ -40,7 +41,8 @@ const components = [
         HomeRoutingModule,
         BrowserModule,
         BrowserAnimationsModule,
-        ParticlesModule
+        ParticlesModule,
+        NgxSpinnerModule
     ],
     declarations: [...components],
     bootstrap: [HomeComponent]

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ParticlesModule } from 'angular-particle';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,7 @@ import { HomeModule } from './modules/home/home.module';
     FormsModule,
     NgbModule,
     ParticlesModule,
+    NgxSpinnerModule,
     HomeModule,
     DashboardModule,
     AppRoutingModule,
