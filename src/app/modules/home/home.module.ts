@@ -20,6 +20,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { TeamComponent } from './components/team/team.component';
 import { HomeComponent } from './home.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const components = [
     HomeComponent,
@@ -42,6 +43,7 @@ const components = [
         BrowserModule,
         BrowserAnimationsModule,
         ParticlesModule,
+        NgbModule,
         NgxSpinnerModule
     ],
     declarations: [...components],
