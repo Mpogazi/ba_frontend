@@ -8,6 +8,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '../shared/shared.module';
 
 // Components
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AboutComponent } from './components/about/about.component';
 import { HomeAuthenticationComponent
 } from './components/authentication/authentication.component';
@@ -19,7 +21,6 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { TeamComponent } from './components/team/team.component';
 import { HomeComponent } from './home.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 const components = [
     HomeComponent,
@@ -42,6 +43,7 @@ const components = [
         BrowserModule,
         BrowserAnimationsModule,
         ParticlesModule,
+        NgbModule,
         NgxSpinnerModule
     ],
     declarations: [...components],
