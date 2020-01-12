@@ -10,8 +10,8 @@ export class SignupComponent implements OnInit {
 
     constructor(
         private spinner: NgxSpinnerService) { }
-    
-    ngOnInit() { 
+
+    ngOnInit() {
         this.spinner.show();
         setTimeout(() => {
             this.spinner.hide();

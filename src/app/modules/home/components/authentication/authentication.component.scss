@@ -11,10 +11,43 @@
     color: white;
 }
 
+.ba_auth-forms__container {
+    margin: 16px auto;
+    width: fit-content;
+}
+
 .ba_auth-container {
     margin: 16px auto;
     width: 380px;
-    background: red;
-    min-height: 400px;
-    text-align: center;
+    background:#1e2833;
+    min-height: 440px;
+    border-radius: 2px;
+    border: 0.1px solid;
+}
+
+::ng-deep .nav-fill {
+    border: none;
+}
+
+::ng-deep .nav-fill .nav-link:hover {
+    color: red;
+    font-size: 18px;
+    border: none;
+}
+
+::ng-deep .nav-fill .nav-link.active {
+    color: red;
+    background-color: #1e2833;
+    border-bottom: 0.6px solid red;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+::ng-deep .nav-fill .nav-link {
+    color: white;
+    border-color: #1e2833;
+    font-size: 18px;
+    font-weight: 400;
+    font-stretch: extra-expanded;
 }
