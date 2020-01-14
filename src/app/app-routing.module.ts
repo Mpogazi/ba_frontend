@@ -15,7 +15,7 @@ const routes: Routes = [
     // For dvpt purposes. Please take it back to home.
     { path: '', redirectTo: 'testing', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
-    { path: 'testing', component: LoginComponent},
+    { path: 'testing', component: HomeAuthenticationComponent},
     { path: 'dashboard', component: DashboardComponent},
     { path: '**', component: NotfoundComponent }
 ];

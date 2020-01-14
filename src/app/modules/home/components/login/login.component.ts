@@ -7,8 +7,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    private loginForm: FormGroup;
-    private validatorMessages = {
+    public loginForm: FormGroup;
+    public wrongCredentials = false;
+    public submitted = false;
+
+    public validatorMessages = {
         email: [
             {type: 'required', message: 'Email required'},
             {type: 'validUsername', message: 'Invalid email address'}
@@ -24,6 +27,10 @@ export class LoginComponent implements OnInit {
     constructor(private fb: FormBuilder) {
     }
 
+    get f() {
+        return this.loginForm.controls;
+    }
+
     ngOnInit() {
         this.loginForm = this.fb.group({
             email: new FormControl('', Validators.required),
@@ -33,6 +40,14 @@ export class LoginComponent implements OnInit {
     }
 
     public login() {
+
+        if (this.loginForm.invalid) {
+            console.log('Form has issues');
+            this.submitted = true;
+            return;
+        }
+
+
         console.log('Value to send', this.loginForm.value);
         this.loginForm.setValue({email: '', password: '', remember: ''});
     }

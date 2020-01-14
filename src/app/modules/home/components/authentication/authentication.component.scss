@@ -2,7 +2,6 @@
 
 :host {
     min-height: 196px;
-    width: 45%;
     background: #333333;
     border: 2px solid dimgray;
 }
@@ -14,13 +13,14 @@
 .ba_auth-forms__container {
     margin: 16px auto;
     width: fit-content;
+    padding-top: 16px;
 }
 
 .ba_auth-container {
     margin: 16px auto;
-    width: 380px;
+    width: 290px;
+    min-height: 280px;
     background:#1e2833;
-    min-height: 440px;
     border-radius: 2px;
     border: 0.1px solid;
 }
