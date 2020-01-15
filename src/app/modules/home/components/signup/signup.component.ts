@@ -36,6 +36,15 @@ export class SignupComponent implements OnInit {
         return this.signupForm.controls;
     }
 
+    public disable(e) {
+        const button = document.getElementById('submitButton');
+        if (!!e.target.checked === true) {
+            button.removeAttribute('disabled');
+        } else {
+            button.setAttribute('disabled', 'disabled');
+        }
+    }
+
     public emptyForms() {
         this.signupForm.setValue({
             firstName: '',
@@ -49,6 +58,7 @@ export class SignupComponent implements OnInit {
 
     public signup() {
         if (this.signupForm.invalid) {
+            console.log(this.signupForm.value);
             this.submitted = true;
             setTimeout(() => {
                 this.submitted = false;
