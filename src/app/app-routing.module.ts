@@ -5,6 +5,7 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import {
     HomeAuthenticationComponent
 } from './modules/home/components/authentication/authentication.component';
+import { LoginComponent } from './modules/home/components/login/login.component';
 import { SignupComponent } from './modules/home/components/signup/signup.component';
 import { HomeComponent } from './modules/home/home.component';
 import { NotfoundComponent } from './modules/shared/components/notfound/notfound.component';

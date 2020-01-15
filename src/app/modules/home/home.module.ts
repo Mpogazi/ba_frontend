@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ParticlesModule } from 'angular-particle';
 import { HomeRoutingModule } from './home-routing.module';
@@ -44,7 +45,8 @@ const components = [
         BrowserAnimationsModule,
         ParticlesModule,
         NgbModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        ReactiveFormsModule
     ],
     declarations: [...components],
     bootstrap: [HomeComponent]
