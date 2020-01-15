@@ -1,22 +1,71 @@
 <div class="container-fluid">
-    <div class="card bg-secondary text-white">
-        <h5 class="card-header"> Component: Shared</h5>
-        <div class="card-body">
-            <h2>Error/Not Available Shared Component: </h2>
-            <div class="error">
+    <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+        <div *ngIf="wrongCredentials" class="invalid-feedback">
+            Wrong password or email
+        </div>
+        <div class="form-group row">
+            <div>
+                <input type="text" class="form-control" placeholder="first name"
+                    [ngClass]="{'is-invalid': submitted && f.firstName.errors}" autocomplete="no">
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">First name required</div>
+                </div>
             </div>
-            <h2>404 Page Component: </h2>
-            <h2>TypeAhead Component: </h2>
         </div>
-    </div>
-    <div class="card bg-secondary text-white">
-        <h5 class="card-header ba-raise_element">Spinner</h5>
-        <div class="container card-body">
-                <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#ff0000" type="ball-clip-rotate-multiple"
-                    [fullScreen]="false" [zIndex]="2">
-                    <p class="loading">Loading...</p>
-                </ngx-spinner>
+        <div class="form-group row">
+            <div>
+                <input type="text" class="form-control" placeholder="last name"
+                    [ngClass]="{'is-invalid': submitted && f.lastName.errors}" autocomplete="no">
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">Last name required</div>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <div>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
+                    [ngClass]="{'is-invalid': submitted && f.email.errors}" autocomplete="no">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email required</div>
+                    <div *ngIf="f.email.errors.email">Invalid email address</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div>
+                <input type="password" class="form-control" placeholder="password"
+                    formControlName="password" [ngClass]="{'is-invalid': submitted && f.password.errors}">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password required</div>
+                    <div *ngIf="f.password.errors.minlength">At least 6 characters</div>    
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div>
+                <input type="password" class="form-control" placeholder="confirm password" formControlName="confirmPassword"
+                    [ngClass]="{'is-invalid': submitted && f.confirmPassword.errors}">
+                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors.required">Please confirm password</div>
+                    <div *ngIf="f.confirmPassword.errors.mustMatch">Password must match</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="ba-move__checkbox">
+                <input class="form-check-input" type="checkbox" formControlName="termsConditions">
+                <label class="form-check-label" for="inputSession">
+                    Terms and Conditions
+                </label>
+                <div *ngIf="submitted && f.termsConditions.errors" class="invalid-feedback">
+                    <div *ngIf="f.termsConditions.errors.required">
+                        Please accept terms and conditions
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <button type="submit" class="btn btn-success btn-block">SIGN UP</button>
+        </div>
+    </form>
 </div>
-
