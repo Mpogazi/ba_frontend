@@ -5,7 +5,7 @@
     <div class="form-group row">
         <div>
             <input type="email" class="form-control" placeholder="Email" formControlName="email"
-                [ngClass]="{'is-invalid': submitted && f.email.errors}" autocomplete="no">
+                [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="no">
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                 Wrong email format
             </div>
@@ -14,7 +14,7 @@
     <div class="form-group row">
         <div>
             <input type="password" class="form-control" placeholder="Password"
-                formControlName="password" [ngClass]="{'is-invalid': submitted && f.password.errors}">
+                formControlName="password" [ngClass]="{'invalid': submitted && f.password.errors}">
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 Input password please.
             </div>
