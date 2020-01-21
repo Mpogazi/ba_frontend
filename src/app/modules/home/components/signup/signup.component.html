@@ -6,7 +6,7 @@
         <div class="form-group row">
             <div>
                 <input type="text" class="form-control" placeholder="first name"
-                    [ngClass]="{'is-invalid': submitted && f.firstName.errors}" autocomplete="no">
+                    [ngClass]="{'invalid': submitted && f.firstName.errors}" autocomplete="no">
                 <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                     <div *ngIf="f.firstName.errors.required">First name required</div>
                 </div>
@@ -15,7 +15,7 @@
         <div class="form-group row">
             <div>
                 <input type="text" class="form-control" placeholder="last name"
-                    [ngClass]="{'is-invalid': submitted && f.lastName.errors}" autocomplete="no">
+                    [ngClass]="{'invalid': submitted && f.lastName.errors}" autocomplete="no">
                 <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                     <div *ngIf="f.lastName.errors.required">Last name required</div>
                 </div>
@@ -24,7 +24,7 @@
         <div class="form-group row">
             <div>
                 <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
-                    [ngClass]="{'is-invalid': submitted && f.email.errors}" autocomplete="no">
+                    [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="no">
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                     <div *ngIf="f.email.errors.required">Email required</div>
                     <div *ngIf="f.email.errors.email">Invalid email address</div>
@@ -34,7 +34,7 @@
         <div class="form-group row">
             <div>
                 <input type="password" class="form-control" placeholder="password"
-                    formControlName="password" [ngClass]="{'is-invalid': submitted && f.password.errors}">
+                    formControlName="password" [ngClass]="{'invalid': submitted && f.password.errors}">
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password required</div>
                     <div *ngIf="f.password.errors.minlength">At least 6 characters</div>    
@@ -44,7 +44,7 @@
         <div class="form-group row">
             <div>
                 <input type="password" class="form-control" placeholder="confirm password" formControlName="confirmPassword"
-                    [ngClass]="{'is-invalid': submitted && f.confirmPassword.errors}">
+                    [ngClass]="{'invalid': submitted && f.confirmPassword.errors}">
                 <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                     <div *ngIf="f.confirmPassword.errors.required">Please confirm password</div>
                     <div *ngIf="f.confirmPassword.errors.mustMatch">Password must match</div>

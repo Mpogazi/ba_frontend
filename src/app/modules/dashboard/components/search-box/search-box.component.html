@@ -9,7 +9,7 @@
                         formControlName="stockCode" 
                         id="inputCode" 
                         placeholder="Code"
-                        [ngClass]="{'is-invalid': submitted && f.stockCode.errors}">
+                        [ngClass]="{'invalid': submitted && f.stockCode.errors}">
             </div>
             <div class="input-group m-2">
                 <input class="form-control"
@@ -21,7 +21,7 @@
                         #a="ngbDatepicker"
                         [minDate]="dates.startDate"
                         [maxDate]="dates.endDate"
-                        [ngClass]="{'is-invalid': submitted && f.startDate.errors}">
+                        [ngClass]="{'invalid': submitted && f.startDate.errors}">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary calendar"
                             id="inputGroup-sizing-sm" 
@@ -41,7 +41,7 @@
                         #d="ngbDatepicker"
                         [minDate]="dates.startDate"
                         [maxDate]="dates.endDate"
-                        [ngClass]="{'is-invalid': submitted && f.endDate.errors}">
+                        [ngClass]="{'invalid': submitted && f.endDate.errors}">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
                         <fa-icon [icon]="icon"></fa-icon>

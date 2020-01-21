@@ -56,14 +56,14 @@ export class SignupComponent implements OnInit {
         });
     }
 
+    private submitData(): boolean {
+        return false;
+    }
+
     public signup() {
         if (this.signupForm.invalid) {
             console.log(this.signupForm.value);
             this.submitted = true;
-            setTimeout(() => {
-                this.submitted = false;
-                this.emptyForms();
-            }, 3000);
             return;
         }
 
