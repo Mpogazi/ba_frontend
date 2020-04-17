@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
     public navList = [
         { link: '/dashboard', name: 'Dashboard' },
-        { link: '/dashboard/watchlist', name: 'Watchlist'}
+        { link: '/home', name: 'home'}
     ];
 
     constructor() {}
