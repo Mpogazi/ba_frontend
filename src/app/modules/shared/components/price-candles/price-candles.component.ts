@@ -10,9 +10,12 @@ import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import * as d3Scale from 'd3-scale';
 import * as d3 from 'd3-selection';
-import * as d3Shape from 'd3-shape';
+import * as d3Chromatic from 'd3-scale-chromatic';
+import * as d3format from 'd3-format';
+import { timeFormat } from 'd3-time-format';
+import * as d3time from 'd3-time';
 
-import { CANDLES } from '../../mocks/candle-stocks.mock';
+import { CANDLES, Candle } from '../../mocks/candle-stocks.mock';
 import { STOCKS } from '../../mocks/stocks.mock';
 
 @Component({
@@ -32,11 +35,12 @@ export class PriceCandlesComponent implements OnInit {
     private x: any;
     private y: any;
     private svg: any;
-    private line: d3Shape.Line<[number, number]>;
+    private data: Candle[];
 
     constructor(private cd: ChangeDetectorRef) {
         this.width = 900 - this.margin.left - this.margin.right;
         this.height = 500 - this.margin.top - this.margin.bottom;
+        this.data = CANDLES;
     }
 
     ngOnInit() {
@@ -54,17 +58,25 @@ export class PriceCandlesComponent implements OnInit {
     }
 
     private initAxis() {
-        this.x = d3Scale.scaleTime().range([0, this.width]);
-        this.y = d3Scale.scaleLinear().range([this.height, 0]);
-        this.x.domain(d3Array.extent(CANDLES, (d) => d.date));
-        this.y.domain([d3Array.min(CANDLES, (d) => d.low), d3Array.max(CANDLES, (d) => d.high)]);
+        let first_day = this.data[0].date
+        let last_day  = this.data[this.data.length - 1].date
+        this.x = d3Scale.scaleTime()
+                    .domain([first_day, last_day])
+                    .range([0, this.width]);
+        this.y = d3Scale.scaleLinear()
+                    .range([this.height, 0])
+                    .domain(
+                        [
+                            d3Array.min(this.data, (d) => d.low), 
+                            d3Array.max(this.data, (d) => d.high)
+                        ]
+                    );
     }
 
     private drawAxis() {
 
         this.svg.append('g')
-            .attr('class', 'axis axis--x')
-            .attr('transform', 'translate(0,' + this.height + ')')
+            .attr('transform', `translate(0, ${ this.height})`)
             .call(d3Axis.axisBottom(this.x));
 
         this.svg.append('g')
@@ -80,14 +92,43 @@ export class PriceCandlesComponent implements OnInit {
     }
 
     private drawLine() {
-        this.line = d3Shape.line()
-            .x((d: any) => this.x(d.date))
-            .y((d: any) => this.y(d.high));
+        this.svg.append('g')
+            .attr('stroke-linecap', 'round')
+            .attr('stroke', 'black')
+            .selectAll('g')
+            .data(this.data)
+            .join('g')
+                .attr('transform', (d: any) => `translate(${this.x(d.date)},0)`)
+                .attr('stroke', (d: any) => d.open > d.close ? d3Chromatic.interpolateRdYlGn(0.7) 
+                    : d.close > d.open ? d3Chromatic.interpolateRdYlGn(0.3)
+                    : d3Chromatic.interpolateRdYlGn(0.4))
+            .append('line')
+                .attr('y1', (d: any) => this.y(d.low))
+                .attr('y2', (d: any) => this.y(d.high))
+            .append('line')
+                .attr('y1', (d: any) => this.y(d.open))
+                .attr('y2', (d: any) => this.y(d.close))
+                .atrr('stroke-width', this.x.bandwidth())
+            .append("title")
+                .text((d: any) => `${this.formatDate(d.date)}
+                    Open: ${this.formatValue(d.open)}
+                    Close: ${this.formatValue(d.close)} (${this.formatChange(d.open, d.close)})
+                    Low: ${this.formatValue(d.low)}
+                    High: ${this.formatValue(d.high)}`)
+            ;
+    }
 
-        this.svg.append('path')
-            .datum(CANDLES)
-            .attr('class', 'line')
-            .attr('d', this.line);
+    private formatDate(date: any) {
+        return timeFormat('%B %-d, %Y')(date);
+    }
+
+    private formatValue(val: number) {
+        return d3format.format(".2f")(val);
+    }
+
+    private formatChange(val1: number, val2: number) {
+        const f = d3format.format(".2f");
+        return f((val2 - val1) / val1);
     }
 
 }
