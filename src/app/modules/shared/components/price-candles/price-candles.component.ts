@@ -13,10 +13,8 @@ import * as d3 from 'd3-selection';
 import * as d3Chromatic from 'd3-scale-chromatic';
 import * as d3format from 'd3-format';
 import { timeFormat } from 'd3-time-format';
-import * as d3time from 'd3-time';
 
 import { CANDLES, Candle } from '../../mocks/candle-stocks.mock';
-import { STOCKS } from '../../mocks/stocks.mock';
 
 @Component({
     selector: 'app-price-candles-component',
@@ -86,36 +84,35 @@ export class PriceCandlesComponent implements OnInit {
             .attr('class', 'axis-title')
             .attr('transform', 'rotate(-90)')
             .attr('y', 6)
-            .attr('dy', '.71em')
+            .attr('dy', '.65em')
             .style('text-anchor', 'end')
-            .text('Price ($)');
+            .text('($)');
     }
 
     private drawLine() {
-        this.svg.append('g')
-            .attr('stroke-linecap', 'round')
+        const g = this.svg.append('g')
             .attr('stroke', 'black')
             .selectAll('g')
             .data(this.data)
             .join('g')
-                .attr('transform', (d: any) => `translate(${this.x(d.date)},0)`)
-                .attr('stroke', (d: any) => d.open > d.close ? d3Chromatic.interpolateRdYlGn(0.7) 
-                    : d.close > d.open ? d3Chromatic.interpolateRdYlGn(0.3)
-                    : d3Chromatic.interpolateRdYlGn(0.4))
-            .append('line')
-                .attr('y1', (d: any) => this.y(d.low))
-                .attr('y2', (d: any) => this.y(d.high))
-            .append('line')
-                .attr('y1', (d: any) => this.y(d.open))
-                .attr('y2', (d: any) => this.y(d.close))
-                .atrr('stroke-width', this.x.bandwidth())
-            .append("title")
+                .attr('transform', (d: any) => `translate(${this.x(d.date)},0)`);
+        g.append('line')
+            .attr('y1', (d: any) => this.y(d.low))
+            .attr('y2', (d: any) => this.y(d.high));
+        
+        g.append('line')
+            .attr('y1', (d: any) => this.y(d.open))
+            .attr('y2', (d: any) => this.y(d.close))
+            .attr('stroke-width', '5')
+            .attr('stroke', (d: any) => d.open > d.close ? d3Chromatic.interpolateRdYlGn(0.8) 
+                    : d.close > d.open ? d3Chromatic.interpolateRdYlGn(0.1) 
+                    : d3Chromatic.interpolateRdYlGn(0.4));
+        g.append("title")
                 .text((d: any) => `${this.formatDate(d.date)}
                     Open: ${this.formatValue(d.open)}
                     Close: ${this.formatValue(d.close)} (${this.formatChange(d.open, d.close)})
                     Low: ${this.formatValue(d.low)}
-                    High: ${this.formatValue(d.high)}`)
-            ;
+                    High: ${this.formatValue(d.high)}`);
     }
 
     private formatDate(date: any) {
