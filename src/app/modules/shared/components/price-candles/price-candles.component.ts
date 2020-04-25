@@ -91,7 +91,7 @@ export class PriceCandlesComponent implements OnInit {
 
     private drawLine() {
         const g = this.svg.append('g')
-            .attr('stroke', 'black')
+            .attr('stroke', 'white')
             .selectAll('g')
             .data(this.data)
             .join('g')

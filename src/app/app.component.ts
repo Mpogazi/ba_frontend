@@ -36,15 +36,15 @@ export class AppComponent implements OnInit {
                     type: 'circle',
                 },
                 opacity: {
-                    value: 0.5,
+                    value: 0.75,
                     random: false
                 },
                 line_linked: {
                     enable: true,
                     distance: 100,
                     color: '#ffffff',
-                    opacity: 0.2,
-                    width: 0.5
+                    opacity: 0.4,
+                    width: 0.45
                 }
             }
         };

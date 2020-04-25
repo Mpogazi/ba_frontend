@@ -1,9 +1,9 @@
 /* COLORS FOR USE. */
 // // for backgrounds
 
-$ba-darker-background: #000000;
-$ba-dark-background: #1B2A32;
-$ba-light-background: #485764;
+$ba-darker-background: #121212;
+$ba-dark-background: #121212;
+$ba-light-background: #212121;
 $ba-button-hover: red;
 
 // for typography
@@ -19,6 +19,20 @@ $ba-alert-info: #60b515;
 /* FONTS USED BY BA*/
 $ba-default-fontSize: 16px;
 $ba_global__gutter: 16px;
+
+.ba-card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color:$ba-light-background;
+    background-clip: border-box;
+    border: 1px solid $ba-light-background;
+    border-radius: .25rem;
+}
 
 :host {
     color: white;
