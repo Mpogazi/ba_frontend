@@ -1,27 +1,9 @@
 <div class="container-fluid">
-    <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+    <form class="ba_forms" [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
         <div *ngIf="wrongCredentials" class="invalid-feedback">
             Wrong password or email
         </div>
-        <div class="form-group row">
-            <div>
-                <input type="text" class="form-control" placeholder="first name"
-                    [ngClass]="{'invalid': submitted && f.firstName.errors}" autocomplete="no">
-                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">First name required</div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div>
-                <input type="text" class="form-control" placeholder="last name"
-                    [ngClass]="{'invalid': submitted && f.lastName.errors}" autocomplete="no">
-                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                    <div *ngIf="f.lastName.errors.required">Last name required</div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
+        <div class="form-group">
             <div>
                 <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
                     [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="no">
@@ -31,48 +13,65 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
             <div>
-                <input type="password" class="form-control" placeholder="password"
-                    formControlName="password" [ngClass]="{'invalid': submitted && f.password.errors}">
+                <input type="password" class="form-control" placeholder="password" formControlName="password"
+                    [ngClass]="{'invalid': submitted && f.password.errors}">
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password required</div>
-                    <div *ngIf="f.password.errors.minlength">At least 6 characters</div>    
+                    <div *ngIf="f.password.errors.minlength">At least 6 characters</div>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
             <div>
-                <input type="password" class="form-control" placeholder="confirm password" formControlName="confirmPassword"
-                    [ngClass]="{'invalid': submitted && f.confirmPassword.errors}">
+                <input type="password" class="form-control" placeholder="confirm password"
+                    formControlName="confirmPassword" [ngClass]="{'invalid': submitted && f.confirmPassword.errors}">
                 <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                     <div *ngIf="f.confirmPassword.errors.required">Please confirm password</div>
                     <div *ngIf="f.confirmPassword.errors.mustMatch">Password must match</div>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="ba-move__checkbox">
-                <input class="form-check-input" 
-                       type="checkbox"
-                       id="termsConditionsCheck" 
-                       formControlName="termsConditions"
-                       (change)="disable($event)">
-                <label class="form-check-label" for="inputSession">
-                    Terms and Conditions
-                </label>
-                <div *ngIf="submitted && f.termsConditions.errors" class="invalid-feedback">
-                    <div *ngIf="!!f.termsConditions.value">
-                        Please accept terms and conditions
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <button type="submit" 
-                    class="btn btn-success btn-block"
-                    id="submitButton"
-                    disabled>SIGN UP</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block" id="submitButton">SIGN UP</button>
         </div>
     </form>
 </div>
+
+<!--
+<div class="form-group">
+    <div>
+        <input type="text" class="form-control" placeholder="first name"
+            [ngClass]="{'invalid': submitted && f.firstName.errors}" autocomplete="no">
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First name required</div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div>
+        <input type="text" class="form-control" placeholder="last name"
+            [ngClass]="{'invalid': submitted && f.lastName.errors}" autocomplete="no">
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last name required</div>
+        </div>
+    </div>
+</div> 
+
+<div class="form-group">
+    <div class="ba-move__checkbox">
+        <input class="form-check-input" type="checkbox" id="termsConditionsCheck"
+            formControlName="termsConditions" (change)="disable($event)">
+        <label class="form-check-label" for="inputSession">
+            Terms and Conditions
+        </label>
+        <div *ngIf="submitted && f.termsConditions.errors" class="invalid-feedback">
+            <div *ngIf="!!f.termsConditions.value">
+                Please accept terms and conditions
+            </div>
+        </div>
+    </div>
+</div>
+
+-->

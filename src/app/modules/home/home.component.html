@@ -1,7 +1,10 @@
 <section>
-	<div class="container-fluid">
+	<div class="container-fluid ba_margins_vertical">
 		<app-header-component [navList]="navList"></app-header-component>
-		<router-outlet></router-outlet>
+		<div>
+			<router-outlet></router-outlet>
+			<div></div>
+		</div>
 		<app-footer-component></app-footer-component>
 	</div>
 </section>
