@@ -20,6 +20,15 @@ $ba-alert-info: #60b515;
 $ba-default-fontSize: 16px;
 $ba_global__gutter: 16px;
 
+.ba_container {
+    border: 0.3px solid #212121;
+    width: fit-content;
+    background-color: #212121;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+}
+
 .ba-card {
     position: relative;
     display: -ms-flexbox;
@@ -69,10 +78,16 @@ hr {
     transform: translate(-50%, -50%);
 }
 
+.ba_center_notop {
+    position: fixed;
+    bottom: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
 .red {
-	color: #ff0000
+	color: #ff0000;
 }
 
 .ba_app-font__lg {

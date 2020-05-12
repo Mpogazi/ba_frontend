@@ -1,42 +1,44 @@
-<div class="container-fluid">
-    <form class="ba_forms" [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
-        <div *ngIf="wrongCredentials" class="invalid-feedback">
-            Wrong password or email
-        </div>
-        <div class="form-group">
-            <div>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
-                    [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="no">
-                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">Email required</div>
-                    <div *ngIf="f.email.errors.email">Invalid email address</div>
+<div class="ba_center_notop">
+    <div class="ba_container">
+        <form class="ba_forms" [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+            <div *ngIf="wrongCredentials" class="invalid-feedback">
+                Wrong password or email
+            </div>
+            <div class="form-group">
+                <div>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
+                        [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="no">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email required</div>
+                        <div *ngIf="f.email.errors.email">Invalid email address</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div>
-                <input type="password" class="form-control" placeholder="password" formControlName="password"
-                    [ngClass]="{'invalid': submitted && f.password.errors}">
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password required</div>
-                    <div *ngIf="f.password.errors.minlength">At least 6 characters</div>
+            <div class="form-group">
+                <div>
+                    <input type="password" class="form-control" placeholder="password" formControlName="password"
+                        [ngClass]="{'invalid': submitted && f.password.errors}">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password required</div>
+                        <div *ngIf="f.password.errors.minlength">At least 6 characters</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div>
-                <input type="password" class="form-control" placeholder="confirm password"
-                    formControlName="confirmPassword" [ngClass]="{'invalid': submitted && f.confirmPassword.errors}">
-                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                    <div *ngIf="f.confirmPassword.errors.required">Please confirm password</div>
-                    <div *ngIf="f.confirmPassword.errors.mustMatch">Password must match</div>
+            <div class="form-group">
+                <div>
+                    <input type="password" class="form-control" placeholder="confirm password"
+                        formControlName="confirmPassword" [ngClass]="{'invalid': submitted && f.confirmPassword.errors}">
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors.required">Please confirm password</div>
+                        <div *ngIf="f.confirmPassword.errors.mustMatch">Password must match</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block" id="submitButton">SIGN UP</button>
-        </div>
-    </form>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block" id="submitButton">SIGN UP</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!--
