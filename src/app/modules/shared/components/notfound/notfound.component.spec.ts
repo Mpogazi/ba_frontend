@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotfoundComponent } from './notfound.component';
 
-describe('NotfoundComponent', () => {
+xdescribe('NotfoundComponent', () => {
   let component: NotfoundComponent;
   let fixture: ComponentFixture<NotfoundComponent>;
 
