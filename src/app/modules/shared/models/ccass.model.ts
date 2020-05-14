@@ -1,30 +1,21 @@
 export interface HoldingModel {
-    id: Number;
+    id: number;
     code: String;
     date: Date;
     Participant_id: string;
     Participant_name: string;
     Participant_addr: string;
-    holding: Number;
-    holding_percent: Number;
-    is_cip: Number
+    holding: number;
+    holding_percent: number;
+    is_cip: number
 }
 
 export interface StockModel {
-    id: Number;
+    id: number;
     date: Date;
     code: string;
     sec_name: string;
     ashare: string;
-}
-
-export interface UserModel {
-    name: string;
-    uuid: string;
-    email: string;
-    picture_url?: string;
-    type: string;
-    metadata?: any;
 }
 
 export interface CcassDate {
@@ -32,21 +23,21 @@ export interface CcassDate {
 }
 
 export interface stockInfo {
-    id: Number;
+    id: number;
     yf_code: string;
     ccass_code: string;
     date: Date;
     short_name: string;
     long_name: string;
     currency: string;
-    beta: Number;
-    market_cap: Number;
-    enter_val: Number;
-    shares_outstanding: Number;
-    shares_float: Number;
-    adv10: Number;
-    bid: Number;
-    ask: Number;
+    beta: number;
+    market_cap: number;
+    enter_val: number;
+    shares_outstanding: number;
+    shares_float: number;
+    adv10: number;
+    bid: number;
+    ask: number;
 }
 
 export interface historicalInfo {
@@ -54,32 +45,32 @@ export interface historicalInfo {
     yf_code: string;
     ccass_code: string;
     date: Date;
-    open: Number;
-    high: Number;
-    low: Number;
-    close: Number;
-    volume: Number;
-    dividends: Number;
-    splits: Number;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    volume: number;
+    dividends: number;
+    splits: number;
 }
 
 export interface summary {
     id: string;
     code: string;
     date: Date;
-    mi_holding: Number;
-    mi_count: Number;
-    mi_percent: Number;
-    cip_holding: Number;
-    cip_count: Number;
-    cip_percent: Number;
-    ncip_holding: Number;
-    ncip_count: Number;
-    ncip_percent: Number;
-    total_holding: Number;
-    total_count: Number;
-    total_percent: Number;
-    shares_outstanding: Number;
+    mi_holding: number;
+    mi_count: number;
+    mi_percent: number;
+    cip_holding: number;
+    cip_count: number;
+    cip_percent: number;
+    ncip_holding: number;
+    ncip_count: number;
+    ncip_percent: number;
+    total_holding: number;
+    total_count: number;
+    total_percent: number;
+    shares_outstanding: number;
     scrape_date: Date;
 }
 

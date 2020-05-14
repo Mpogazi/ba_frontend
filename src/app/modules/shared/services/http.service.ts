@@ -9,7 +9,7 @@ import { HttpResponseModel,
          HttpVerbs,
          HttpRequestModel
 } from './http.model';
-import { ID } from '../../utils/id.utils';
+import { ID } from '../utils/id.utils';
 
 /**
  * NEXT STEPS:
