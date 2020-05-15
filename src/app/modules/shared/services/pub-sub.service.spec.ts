@@ -3,20 +3,20 @@ import {
     HttpTestingController
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { PubSubService } from './pub-sub.service';
+import { pubSubService } from './pub-sub.service';
 import { Observable, Subscriber } from 'rxjs';
 
 describe('Testing Publish Subscribe Service', () => {
-    let pubsub: PubSubService;
+    let pubsub: pubSubService;
     let httpMock: HttpTestingController;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-            providers: [PubSubService]
+            providers: [pubSubService]
         });
 
-        pubsub = TestBed.get(PubSubService);
+        pubsub = TestBed.get(pubSubService);
         httpMock = TestBed.get(HttpTestingController);
         let weirdEvent = pubsub.publish('Awkward');
     });

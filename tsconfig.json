@@ -4,8 +4,9 @@
     "baseUrl": "./",
     "paths": {
       "@environment/*": ["./src/environments/*"],
-      "@models/*": ["./src/app/modules/shared/models/*"],
-      "@utils/*": ["./src/app/modules/shared/utils/*"]
+      "@shared_models/*": ["./src/app/modules/shared/models/*"],
+      "@shared_utils/*": ["./src/app/modules/shared/utils/*"],
+      "@shared_services/*":["./src/app/modules/shared/services/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
