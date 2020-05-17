@@ -14,11 +14,6 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
     { path: 'home', component: HomeComponent,
     children: [
-        { path: 'about', component: AboutComponent },
-        { path: 'education', component: EducationComponent },
-        { path: 'team', component: TeamComponent },
-        { path: 'blog', component: BlogComponent },
-        { path: 'careers', component: CareersComponent },
         { path: 'login', component: LoginComponent },
         { path: 'signup', component: SignupComponent}
     ]},

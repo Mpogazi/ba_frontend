@@ -8,7 +8,7 @@ import { Header } from '../../interfaces/header.interface';
 })
 
 export class HomeHeaderComponent {
-    private navbarOpen  = false;
+    public navbarOpen  = false;
     @Input() navList: Header[];
 
     public toggleNavbar() {

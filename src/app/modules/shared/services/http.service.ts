@@ -9,7 +9,7 @@ import { HttpResponseModel,
          HttpVerbs,
          HttpRequestModel
 } from './http.model';
-import { ID } from '../utils/id.utils';
+import { idGenerate } from '../utils/shared.utils';
 
 /**
  * NEXT STEPS:
@@ -17,13 +17,12 @@ import { ID } from '../utils/id.utils';
  *  --> Abstract the security settings
  */
 
-@Injectable()
+@Injectable({ providedIn: 'root'})
 export class HttpService {
     // private resp: HttpResponseModel = { responseCode: 'Fail', data: 'Sorry' };
 
     constructor(
-        private http: HttpClient,
-        private id: ID,
+        private http: HttpClient
     ) {}
 
     public request(request: HttpRequestModel) {
@@ -62,7 +61,7 @@ export class HttpService {
         for (header of options) {
             headers.append(header.key, header.value);
         }
-        headers.append('request-id', this.id.generate());
+        headers.append('request-id', idGenerate());
         return headers;
     }
 

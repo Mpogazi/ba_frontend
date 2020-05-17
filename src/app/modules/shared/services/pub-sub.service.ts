@@ -17,7 +17,7 @@ export class pubSubService {
         this.subjects[eventName] = this.subjects[eventName] || new Subject<any>();
 
         // return observable
-        return this.subjects[eventName].asObservable();        
+        return this.subjects[eventName].asObservable();     
     }
 
 }

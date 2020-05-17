@@ -11,7 +11,7 @@ import { NotfoundComponent } from './modules/shared/components/notfound/notfound
 
 const routes: Routes = [
     // For dvpt purposes. Please take it back to home.
-    { path: '', redirectTo: 'home/signup', pathMatch: 'full'},
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'testing', component: HomeAuthenticationComponent},
     { path: 'dashboard', component: DashboardComponent},
