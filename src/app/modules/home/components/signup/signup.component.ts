@@ -19,13 +19,9 @@ import { environment as env } from '@environment/environment';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignupComponent implements OnInit, OnDestroy {
-    public signupForm1: FormGroup;
-    public signupForm2: FormGroup;
-    public ndphase = false;
-    public errors1 = false;
-    public errors2 = false;
-    private request: HttpRequestModel;
-    private user: User;
+    public signupForm: FormGroup;
+    private request = {} as HttpRequestModel;
+    private user: string;
 
 
     constructor(private fb: FormBuilder,
@@ -33,91 +29,42 @@ export class SignupComponent implements OnInit, OnDestroy {
         private http: HttpService) { }
 
     ngOnInit() {
-        this.signupForm1 = this.fb.group({
-            email: new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.email])),
-            password: new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.minLength(6)])),
-            confirmPassword: new FormControl('', Validators.required),
-        }, {
-            validator: MustMatch('password', 'confirmPassword')
-        });
-        this.signupForm2 = this.fb.group({
+        this.signupForm = this.fb.group({
+            email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
             firstName: new FormControl('', Validators.required),
-            lastName: new FormControl('', Validators.required),
-        });
+            password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+            confirmPassword: new FormControl('', Validators.required),
+            lastName: new FormControl('', Validators.required)
+        }, { validator: MustMatch('password', 'confirmPassword') });
     }
 
-    refresh() {
-        this.cd.detectChanges();
+    refresh() { this.cd.detectChanges(); }
+    ngOnDestroy() { }
+
+    get f() {
+        return this.signupForm.controls;
     }
 
-    ngOnDestroy() {
-
+    public emptyForm() {
+        this.signupForm.setValue({ email: '', password: '', confirmPassword: '', firstName: '', lastName: '' });
     }
 
-    get f1() {
-        return this.signupForm1.controls;
-    }
-
-    get f2() {
-        return this.signupForm2.controls;
-    }
-
-    public disable(e: { target: { checked: any; }; }) {
-        const button = document.getElementById('submitButton');
-        if (!!e.target.checked === true) {
-            button.removeAttribute('disabled');
-        } else {
-            button.setAttribute('disabled', 'disabled');
-        }
-    }
-
-    public emptyForm1() {
-        this.signupForm1.setValue({
-            email: '',
-            password: '',
-            confirmPassword: ''
-        });
-    }
-
-    public emptyForm2() {
-        this.signupForm2.setValue({
-            firstName: '',
-            lastName: ''
-        });
-    }
-
-    private submitData(): boolean {
-        return false;
-    }
-
-    public signup1() {
-        if (this.signupForm1.invalid) {
-            this.errors1 = true;
-            this.refresh();
-            return;
-        }
-        this.ndphase = true;
-    }
-
-    public signup2() {
-        if (!this.signupForm1.invalid && !this.signupForm2.invalid) {
-            this.createUser(this.f1, this.f2);
+    public signup() {
+        if (!this.signupForm.invalid && !this.signupForm.invalid) {
+            this.createUser(this.signupForm);
             this.request.path = env.apiUrl + '/signup';
             this.request.method = HttpVerbs.POST;
+            this.request.options = [];
             this.request.body = this.user;
-            this.http.request(this.request);
+            this.http.request(this.request).subscribe(
+                x => console.log(x),
+                e => console.log(e));
         }
-        this.errors2 = true;
     }
 
-    private createUser(form1: any, form2: any) {
-        this.user.email = form1.email.value;
-        this.user.password = form1.password.value;
-        this.user.firstName = form2.firstName.value;
-        this.user.lastName = form2.lastName.value;
+    private createUser(form: FormGroup) {
+        this.user = JSON.stringify(form.value);
+        console.log("deserialized");
+        console.log(this.user);
     }
 }

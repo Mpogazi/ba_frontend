@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map,
-        filter,
+import { Observable, throwError } from 'rxjs';
+import {
+    map
 } from 'rxjs/operators';
-import { HttpResponseModel,
-         Header,
-         HttpVerbs,
-         HttpRequestModel
+import {
+    HttpResponseModel,
+    Header,
+    HttpVerbs,
+    HttpRequestModel
 } from './http.model';
 import { idGenerate } from '../utils/shared.utils';
 
@@ -17,40 +18,33 @@ import { idGenerate } from '../utils/shared.utils';
  *  --> Abstract the security settings
  */
 
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class HttpService {
     // private resp: HttpResponseModel = { responseCode: 'Fail', data: 'Sorry' };
 
     constructor(
         private http: HttpClient
-    ) {}
+    ) { }
 
     public request(request: HttpRequestModel) {
         const headers = this.extractHeaders(request);
         switch (request.method) {
             case HttpVerbs.GET:
-                this.get(request.path, headers);
-                break;
+                return this.get(request.path, headers);
             case HttpVerbs.POST:
-                this.post(request.path, request.body, headers);
-                break;
+                return this.post(request.path, request.body, headers);
             case HttpVerbs.PUT:
-                this.put(request.path, request.body, headers);
-                break;
+                return this.put(request.path, request.body, headers);
             case HttpVerbs.DELETE:
-                this.delete(request.path, headers);
-                break;
+                return this.delete(request.path, headers);
             case HttpVerbs.PATCH:
-                this.patch(request.path, request.body, headers);
-                break;
+                return this.patch(request.path, request.body, headers);
             case HttpVerbs.HEAD:
-                this.head(request.path, headers);
-                break;
+                return this.head(request.path, headers);
             case HttpVerbs.OPTIONS:
-                this.options(request.path, headers);
-                break;
+                return this.options(request.path, headers);
             default:
-                break;
+                return throwError(new Error('Method not recognized!'));
         }
     }
 
@@ -65,19 +59,20 @@ export class HttpService {
         return headers;
     }
 
-    private get(url: string, options: HttpHeaders ): Observable<HttpResponseModel> {
-        return this.http.get(url, {headers: options}).pipe(
+    private get(url: string, options: HttpHeaders): Observable<HttpResponseModel> {
+        return this.http.get(url, { headers: options }).pipe(
             map(x => this.toResponseModel(x))
         );
     }
 
     private toResponseModel(obj: any): HttpResponseModel {
-        const {code, content} = obj;
-        return ({responseCode: code, data: content} as HttpResponseModel);
+        const { code, content } = obj;
+        return ({ responseCode: code, data: content } as HttpResponseModel);
     }
 
     private post(url: string, body: any, options: HttpHeaders): Observable<HttpResponseModel> {
-        return this.http.post(url, body, { headers: options}).pipe(
+        console.log('Posting the request');
+        return this.http.post(url, body, { headers: options }).pipe(
             map(x => this.toResponseModel(x))
         );
     }

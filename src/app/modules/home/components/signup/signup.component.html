@@ -1,62 +1,33 @@
-<div class="ba_center_notop">
-    <div class="ba_container">
-        <form class="ba_forms" [formGroup]="signupForm1" *ngIf="!ndphase" (ngSubmit)="signup1()" novalidate>
-            <div class="form-group">
-                <div>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
-                        [ngClass]="{'invalid': errors1 && f1.email.errors}" autocomplete="no">
-                    <div *ngIf="errors1 && f1.email.errors" class="invalid-feedback">
-                        <div *ngIf="f1.email.errors.required">Email required</div>
-                        <div *ngIf="f1.email.errors.email">Invalid email address</div>
-                    </div>
-                </div>
+<div class="ba_container ba_centered_hor ba_centered_ver">
+    <form class="ba_forms" [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+        <div class="form-group">
+            <div>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
+                    [ngClass]="{'invalid': f.email.errors}" autocomplete="no">
             </div>
-            <div class="form-group">
-                <div>
-                    <input type="password" class="form-control" placeholder="password" formControlName="password"
-                        [ngClass]="{'invalid': errors1 && f1.password.errors}">
-                    <div *ngIf="errors1 && f1.password.errors" class="invalid-feedback">
-                        <div *ngIf="f1.password.errors.required">Password required</div>
-                        <div *ngIf="f1.password.errors.minlength">At least 6 characters</div>
-                    </div>
-                </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <input type="password" class="form-control" placeholder="password" formControlName="password"
+                    [ngClass]="{'invalid': f.password.errors}">
             </div>
-            <div class="form-group">
-                <div>
-                    <input type="password" class="form-control" placeholder="confirm password"
-                        formControlName="confirmPassword" [ngClass]="{'invalid': errors1 && f1.confirmPassword.errors}">
-                    <div *ngIf="errors1 && f1.confirmPassword.errors" class="invalid-feedback">
-                        <div *ngIf="f1.confirmPassword.errors.required">Please confirm password</div>
-                        <div *ngIf="f1.confirmPassword.errors.mustMatch">Password must match</div>
-                    </div>
-                </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <input type="password" class="form-control" placeholder="confirm password"
+                    formControlName="confirmPassword" [ngClass]="{'invalid': f.confirmPassword.errors}">
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block" id="submitButton1">Accept & Join</button>
-            </div>
-        </form>
-        <form class="ba_forms" [formGroup]="signupForm2" *ngIf="ndphase" (ngSubmit)="signup2()" novalidate>
-            <div class="form-group">
-                <div>
-                    <input type="text" class="form-control" placeholder="first name"
-                        [ngClass]="{'invalid': errors2 && f2.firstName.errors}" autocomplete="no">
-                    <div *ngIf="errors2 && f2.firstName.errors" class="invalid-feedback">
-                        <div *ngIf="f2.firstName.errors.required">First name required</div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div>
-                    <input type="text" class="form-control" placeholder="last name"
-                        [ngClass]="{'invalid': errors2 && f2.lastName.errors}" autocomplete="no">
-                    <div *ngIf="errors2 && f2.lastName.errors" class="invalid-feedback">
-                        <div *ngIf="f2.lastName.errors.required">Last name required</div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block" id="submitButton2">SIGN UP</button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="first name" formControlName="firstName"
+                [ngClass]="{'invalid': f.firstName.errors}">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="last name" formControlName="lastName"
+                [ngClass]="{'invalid': f.lastName.errors}">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block">SIGN UP</button>
+        </div>
+    </form>
 </div>

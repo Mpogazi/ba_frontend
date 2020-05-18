@@ -78,11 +78,14 @@ hr {
     transform: translate(-50%, -50%);
 }
 
-.ba_center_notop {
-    position: fixed;
-    bottom: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.ba_centered_hor {
+    margin: 0 auto;
+}
+
+.ba_centered_ver {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
 }
 
 
