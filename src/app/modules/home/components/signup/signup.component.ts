@@ -55,16 +55,13 @@ export class SignupComponent implements OnInit, OnDestroy {
             this.request.path = env.apiUrl + '/signup';
             this.request.method = HttpVerbs.POST;
             this.request.options = [];
-            this.request.body = this.user;
+            this.request.body = this.signupForm.value;
             this.http.request(this.request).subscribe(
-                x => console.log(x),
-                e => console.log(e));
+                x => console.log(x));
         }
     }
 
     private createUser(form: FormGroup) {
         this.user = JSON.stringify(form.value);
-        console.log("deserialized");
-        console.log(this.user);
     }
 }

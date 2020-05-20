@@ -12,16 +12,8 @@ import {
 } from './http.model';
 import { idGenerate } from '../utils/shared.utils';
 
-/**
- * NEXT STEPS:
- *  --> Abstract error handling
- *  --> Abstract the security settings
- */
-
 @Injectable({ providedIn: 'root' })
 export class HttpService {
-    // private resp: HttpResponseModel = { responseCode: 'Fail', data: 'Sorry' };
-
     constructor(
         private http: HttpClient
     ) { }
@@ -59,19 +51,20 @@ export class HttpService {
         return headers;
     }
 
+    private toResponseModel(obj: any): HttpResponseModel {
+        let newObj = {} as HttpResponseModel;
+        newObj.responseCode = obj.code;
+        newObj.data         = obj.data;
+        return newObj;
+    }
+
     private get(url: string, options: HttpHeaders): Observable<HttpResponseModel> {
         return this.http.get(url, { headers: options }).pipe(
             map(x => this.toResponseModel(x))
         );
     }
 
-    private toResponseModel(obj: any): HttpResponseModel {
-        const { code, content } = obj;
-        return ({ responseCode: code, data: content } as HttpResponseModel);
-    }
-
     private post(url: string, body: any, options: HttpHeaders): Observable<HttpResponseModel> {
-        console.log('Posting the request');
         return this.http.post(url, body, { headers: options }).pipe(
             map(x => this.toResponseModel(x))
         );
