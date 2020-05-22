@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "paths": {
       "@environment/*": ["./src/environments/*"],
+      "@auth/*": ["./src/app/auth/*"],
       "@shared_models/*": ["./src/app/modules/shared/models/*"],
       "@shared_utils/*": ["./src/app/modules/shared/utils/*"],
       "@shared_services/*":["./src/app/modules/shared/services/*"]

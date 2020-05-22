@@ -7,10 +7,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../utils/validators.util';
-import { HttpService } from '@shared_services/http.service';
-import { HttpRequestModel, HttpVerbs } from '@shared_services/http.model';
-import { User } from '@shared_models/user.model';
-import { environment as env } from '@environment/environment';
+import { AuthService } from '@auth/auth.service';
 
 @Component({
     selector: 'app-signup',
@@ -20,13 +17,12 @@ import { environment as env } from '@environment/environment';
 })
 export class SignupComponent implements OnInit, OnDestroy {
     public signupForm: FormGroup;
-    private request = {} as HttpRequestModel;
     private user: string;
 
 
     constructor(private fb: FormBuilder,
         private cd: ChangeDetectorRef,
-        private http: HttpService) { }
+        private auth: AuthService) { }
 
     ngOnInit() {
         this.signupForm = this.fb.group({
@@ -51,17 +47,10 @@ export class SignupComponent implements OnInit, OnDestroy {
 
     public signup() {
         if (!this.signupForm.invalid && !this.signupForm.invalid) {
-            this.createUser(this.signupForm);
-            this.request.path = env.apiUrl + '/signup';
-            this.request.method = HttpVerbs.POST;
-            this.request.options = [];
-            this.request.body = this.signupForm.value;
-            this.http.request(this.request).subscribe(
-                x => console.log(x));
+            this.auth.signup(this.signupForm.value).subscribe(
+                (x: any) => console.log(x),
+                (e: any) => console.log("An error fuck!")
+            );
         }
-    }
-
-    private createUser(form: FormGroup) {
-        this.user = JSON.stringify(form.value);
     }
 }
