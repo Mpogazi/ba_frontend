@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
-
+@Injectable({ providedIn: 'root' })
 export class CookieService {
-    constructor() {}
+    constructor() { }
 
     public check(name: string): boolean {
         if (typeof document === 'undefined') { return false; }
@@ -14,7 +13,7 @@ export class CookieService {
     }
 
     public set(name: string, value: string, expires?: number | Date,
-               path?: string, domain?: string, secure?: boolean): void {
+        path?: string, domain?: string, secure?: boolean): void {
 
         let cookieStr = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';';
 

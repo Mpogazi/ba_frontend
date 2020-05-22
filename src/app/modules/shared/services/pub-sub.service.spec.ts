@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { pubSubService } from './pub-sub.service';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable } from 'rxjs';
 
 describe('Testing Publish Subscribe Service', () => {
     let pubsub: pubSubService;
