@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit, OnDestroy {
             { type: 'pattern', message: 'Password must contain !@#$%^' },
             { type: 'minlength', message: 'Password must be at least 5 characters long' }
         ]
-
     };
 
     constructor(private fb: FormBuilder,
@@ -48,6 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     public login() {
         if (!this.loginForm.invalid) {
+            console.log('Called this login()\n');
             this.auth.login(this.loginForm.value).subscribe(
                 (x: any) => console.log(x),
                 (e: any) => console.log(e)

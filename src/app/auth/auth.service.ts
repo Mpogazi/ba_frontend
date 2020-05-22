@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { tap, delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { HttpResponseModel, HttpRequestModel, HttpVerbs } from '@shared_services/http.model';
 import { environment as env } from '@environment/environment';
 import { HttpService } from '@shared_services/http.service';
+import { LocalStorageService } from '@shared_services/local-storage.service';
 
 @Injectable({
     providedIn: 'root',
@@ -12,27 +12,29 @@ import { HttpService } from '@shared_services/http.service';
 export class AuthService {
     public isLoggedIn = false;
 
-    constructor(private http: HttpService) { }
+    constructor(private http: HttpService,
+        private localStore: LocalStorageService) { }
 
-    login(user: Object): Observable<HttpResponseModel> {
-        let request = {} as HttpRequestModel;
-        request.body = user;
-        request.method = HttpVerbs.POST;
-        request.options = [];
-        request.path = env.apiUrl + '/login';
-        return this.http.request(request);
+    public login(user: Object): Observable<HttpResponseModel> {
+        return this.http.request(
+            this.createReq(user, HttpVerbs.POST, [], env.apiUrl + '/login'));
     }
 
-    signup(user: Object): Observable<HttpResponseModel> {
-        let request = {} as HttpRequestModel;
-        request.body = user;
-        request.method = HttpVerbs.POST;
-        request.options = [];
-        request.path = env.apiUrl + '/signup';
-        return this.http.request(request);
+    public signup(user: Object): Observable<HttpResponseModel> {
+        return this.http.request(
+            this.createReq(user, HttpVerbs.POST, [], env.apiUrl + '/signup'));
     }
 
-    logout(): void {
+    public logout(): void {
         this.isLoggedIn = false;
+    }
+
+    private createReq(body: Object, method: string, options: [], path: string) {
+        let request = {} as HttpRequestModel;
+        request.body = body;
+        request.method = method;
+        request.options = options;
+        request.path = path;
+        return request;
     }
 }
