@@ -1,30 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@auth/auth.service';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
     public loginForm: FormGroup;
     public wrongCredentials = false;
-    public submitted = false;
 
     public validatorMessages = {
         email: [
-            {type: 'required', message: 'Email required'},
-            {type: 'validUsername', message: 'Invalid email address'}
+            { type: 'required', message: 'Email required' },
+            { type: 'validUsername', message: 'Invalid email address' }
         ],
         password: [
-            {type: 'required', message: 'password required'},
-            {type: 'pattern', message: 'Password must contain !@#$%^'},
-            {type: 'minlength', message: 'Password must be at least 5 characters long'}
+            { type: 'required', message: 'password required' },
+            { type: 'pattern', message: 'Password must contain !@#$%^' },
+            { type: 'minlength', message: 'Password must be at least 5 characters long' }
         ]
 
     };
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder,
+        private cd: ChangeDetectorRef,
+        private auth: AuthService) {
     }
 
     get f() {
@@ -33,22 +36,22 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.fb.group({
-            email: new FormControl('', Validators.required),
-            password: new FormControl('', Validators.required),
+            email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+            password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
             remember: new FormControl('')
         });
     }
 
+    ngOnDestroy() {
+
+    }
+
     public login() {
-
-        if (this.loginForm.invalid) {
-            console.log('Form has issues');
-            this.submitted = true;
-            return;
+        if (!this.loginForm.invalid) {
+            this.auth.login(this.loginForm.value).subscribe(
+                (x: any) => console.log(x),
+                (e: any) => console.log(e)
+            );
         }
-
-
-        console.log('Value to send', this.loginForm.value);
-        this.loginForm.setValue({email: '', password: '', remember: ''});
     }
 }

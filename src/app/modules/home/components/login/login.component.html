@@ -1,25 +1,12 @@
 <div class="ba_container ba_centered_hor ba_centered_ver">
     <form class="ba_forms" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
-        <div *ngIf="wrongCredentials" class="invalid-feedback">
-            Wrong password or email
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email"
+                [ngClass]="{'invalid': f.email.errors}" autocomplete="yes">
         </div>
         <div class="form-group">
-            <div>
-                <input type="email" class="form-control" placeholder="Email" formControlName="email"
-                    [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="no">
-                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    Wrong email format
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div>
-                <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                    [ngClass]="{'invalid': submitted && f.password.errors}">
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    Input password please.
-                </div>
-            </div>
+            <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                [ngClass]="{'invalid': f.password.errors}" autocomplete="yes">
         </div>
         <div class="form-group">
             <div class="ba-move__checkbox">

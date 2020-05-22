@@ -14,11 +14,13 @@ export class AuthService {
 
     constructor(private http: HttpService) { }
 
-    login(): Observable<boolean> {
-        return of(true).pipe(
-            delay(1000),
-            tap(val => this.isLoggedIn = true)
-        );
+    login(user: Object): Observable<HttpResponseModel> {
+        let request = {} as HttpRequestModel;
+        request.body = user;
+        request.method = HttpVerbs.POST;
+        request.options = [];
+        request.path = env.apiUrl + '/login';
+        return this.http.request(request);
     }
 
     signup(user: Object): Observable<HttpResponseModel> {

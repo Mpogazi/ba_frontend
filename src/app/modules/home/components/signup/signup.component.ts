@@ -17,8 +17,6 @@ import { AuthService } from '@auth/auth.service';
 })
 export class SignupComponent implements OnInit, OnDestroy {
     public signupForm: FormGroup;
-    private user: string;
-
 
     constructor(private fb: FormBuilder,
         private cd: ChangeDetectorRef,
@@ -34,7 +32,6 @@ export class SignupComponent implements OnInit, OnDestroy {
         }, { validator: MustMatch('password', 'confirmPassword') });
     }
 
-    refresh() { this.cd.detectChanges(); }
     ngOnDestroy() { }
 
     get f() {
