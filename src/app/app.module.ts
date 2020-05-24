@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { HomeModule } from './modules/home/home.module';
+import { ErrorInterceptor } from '@auth/error.interceptor';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { HomeModule } from './modules/home/home.module';
     DashboardModule,
     AppRoutingModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ErrorInterceptor]
 })
 
 export class AppModule { }
