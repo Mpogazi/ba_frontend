@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     constructor(private fb: FormBuilder,
         private cd: ChangeDetectorRef,
-        private auth: AuthService) {
+        private auth: AuthService,
+        private router: Router) {
     }
 
     get f() {
@@ -45,12 +47,25 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     }
 
+    private reroute(x: any) {
+        console.log('User logged in');
+        this.router.navigateByUrl('/dashboard');
+    }
+
+    public emptyForm() {
+        this.loginForm.setValue({ email: '', password: ''});
+    }
+
+    private handleError(e: any) {
+        console.log('User failed to log in');
+        this.emptyForm();
+    }
+
     public login() {
         if (!this.loginForm.invalid) {
             console.log('Called this login()\n');
             this.auth.login(this.loginForm.value).subscribe(
-                (x: any) => console.log(x),
-                (e: any) => console.log(e)
+                this.reroute,this.handleError
             );
         }
     }
