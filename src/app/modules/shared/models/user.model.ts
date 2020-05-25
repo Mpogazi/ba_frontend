@@ -11,7 +11,7 @@ export class User implements Deserializable {
     firstName: string;
     lastName: string;
     role: Role;
-    token: string;
+    token?: string;
 
     deserialize(input: any) {
         Object.assign(this, input);

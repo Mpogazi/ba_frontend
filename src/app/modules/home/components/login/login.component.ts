@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestro
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@auth/auth.service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-login',
@@ -12,18 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit, OnDestroy {
     public loginForm: FormGroup;
     public wrongCredentials = false;
-
-    public validatorMessages = {
-        email: [
-            { type: 'required', message: 'Email required' },
-            { type: 'validUsername', message: 'Invalid email address' }
-        ],
-        password: [
-            { type: 'required', message: 'password required' },
-            { type: 'pattern', message: 'Password must contain !@#$%^' },
-            { type: 'minlength', message: 'Password must be at least 5 characters long' }
-        ]
-    };
+    private destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(private fb: FormBuilder,
         private cd: ChangeDetectorRef,
@@ -44,29 +35,41 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
     }
 
     private reroute(x: any) {
-        console.log('User logged in');
         this.router.navigateByUrl('/dashboard');
     }
 
     public emptyForm() {
-        this.loginForm.setValue({ email: '', password: ''});
+        this.loginForm.setValue({ email: '', password: '' });
     }
 
     private handleError(e: any) {
-        console.log('User failed to log in');
         this.emptyForm();
     }
 
     public login() {
         if (!this.loginForm.invalid) {
-            console.log('Called this login()\n');
-            this.auth.login(this.loginForm.value).subscribe(
-                this.reroute,this.handleError
-            );
+            this.auth.login(this.loginForm.value)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(
+                    this.reroute, this.handleError
+                );
         }
     }
 }
+
+    // public validatorMessages = {
+    //     email: [
+    //         { type: 'required', message: 'Email required' },
+    //         { type: 'validUsername', message: 'Invalid email address' }
+    //     ],
+    //     password: [
+    //         { type: 'required', message: 'password required' },
+    //         { type: 'pattern', message: 'Password must contain !@#$%^' },
+    //         { type: 'minlength', message: 'Password must be at least 5 characters long' }
+    //     ]
+    // };

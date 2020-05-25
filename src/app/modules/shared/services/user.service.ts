@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
 import { environment } from '@environment/environment';
 import { User } from '@shared_models/user.model';
 
-@Injectable({ providedIn : 'root'})
+@Injectable({ providedIn: 'root' })
 
 /**
  * A blocker: Need to choose whether I have to store the
@@ -16,19 +14,5 @@ import { User } from '@shared_models/user.model';
  *
  */
 export class UserService {
-    constructor(private http: HttpClient) {}
-    
-    getAll() {
-        return this.http.get<User[]>(``);
-    }
-
-    getUser() {
-        return this.http.get<User>(``);
-    }
-
-    getById(id: number) {
-        return this.http.get<User>(``)
-    }
-
-
+    constructor() { }
 }
