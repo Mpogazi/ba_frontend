@@ -8,23 +8,23 @@ import { CareersComponent } from './components/careers/careers.component';
 import { EducationComponent } from './components/education/education.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { TeamComponent } from './components/team/team.component';
 import { HomeComponent } from './home.component';
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent,
-    children: [
-        { path: 'login', component: LoginComponent },
-        { path: 'signup', component: SignupComponent}
-    ]},
-    { path: 'home/home', redirectTo: 'home', pathMatch: 'full' }
+    {
+        path: 'home', 
+        component: HomeComponent,
+        children: [
+            { path: 'login', component: LoginComponent }, 
+            { path: 'signup', component: SignupComponent }
+        ]
+    }
 ];
 
 @NgModule({
+    entryComponents: [LoginComponent],
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
 
-export class HomeRoutingModule {
-    static components = [HomeComponent];
-}
+export class HomeRoutingModule { }

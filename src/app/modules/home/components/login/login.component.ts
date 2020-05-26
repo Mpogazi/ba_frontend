@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { AuthService } from '@auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, first } from 'rxjs/operators';
 
 @Component({
     selector: 'app-login',
@@ -13,18 +13,24 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit, OnDestroy {
     public loginForm: FormGroup;
-    public wrongCredentials = false;
+    public loading = false;
+    public submitted = false;
+    public returnUrl: string;
+    public error = '';
     private destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(private fb: FormBuilder,
         private cd: ChangeDetectorRef,
+        private route: ActivatedRoute,
         private auth: AuthService,
         private router: Router) {
+
+            if(this.auth.isLoggedIn) {
+                this.router.navigate(['/dashboard']);
+            }
     }
 
-    get f() {
-        return this.loginForm.controls;
-    }
+    get f() { return this.loginForm.controls; }
 
     ngOnInit() {
         this.loginForm = this.fb.group({
@@ -32,6 +38,9 @@ export class LoginComponent implements OnInit, OnDestroy {
             password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
             remember: new FormControl('')
         });
+
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        console.log(this.returnUrl);
     }
 
     ngOnDestroy() {
@@ -39,37 +48,20 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.destroy$.unsubscribe();
     }
 
-    private reroute(x: any) {
-        this.router.navigateByUrl('/dashboard');
-    }
-
-    public emptyForm() {
-        this.loginForm.setValue({ email: '', password: '' });
-    }
-
-    private handleError(e: any) {
-        this.emptyForm();
-    }
-
     public login() {
-        if (!this.loginForm.invalid) {
-            this.auth.login(this.loginForm.value)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(
-                    this.reroute, this.handleError
-                );
+        this.submitted = true;
+        // Stop if invalid
+        if (this.loginForm.invalid) {
+            return;
         }
+        this.loading = true;
+        this.auth.login(this.loginForm.value)
+            .pipe(first())
+            .subscribe(
+                data => { this.router.navigate(['dashboard']); },
+                error => { 
+                    this.error = error; 
+                    this.loading = false; 
+                });
     }
 }
-
-    // public validatorMessages = {
-    //     email: [
-    //         { type: 'required', message: 'Email required' },
-    //         { type: 'validUsername', message: 'Invalid email address' }
-    //     ],
-    //     password: [
-    //         { type: 'required', message: 'password required' },
-    //         { type: 'pattern', message: 'Password must contain !@#$%^' },
-    //         { type: 'minlength', message: 'Password must be at least 5 characters long' }
-    //     ]
-    // };

@@ -2,11 +2,11 @@
     <form class="ba_forms" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
         <div class="form-group">
             <input type="email" class="form-control" placeholder="Email" formControlName="email"
-                [ngClass]="{'invalid': f.email.errors}" autocomplete="yes">
+                [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="yes">
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                [ngClass]="{'invalid': f.password.errors}" autocomplete="yes">
+                [ngClass]="{'invalid': submitted && f.password.errors}" autocomplete="yes">
         </div>
         <div class="form-group">
             <div class="ba-move__checkbox">
@@ -17,7 +17,10 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block">SIGN IN</button>
+            <button [disabled]="loading" type="submit" class="btn btn-success btn-block">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Login
+            </button>
         </div>
     </form>
 </div>

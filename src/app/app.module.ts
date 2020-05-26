@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,9 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { HomeModule } from './modules/home/home.module';
 import { ErrorInterceptor } from '@auth/error.interceptor';
+import { JwtInterceptor } from '@auth/jwt.interceptor';
+import { AuthGuard } from '@auth/auth.guard';
+import { AuthService } from '@auth/auth.service';
 
 
 @NgModule({
@@ -32,7 +35,12 @@ import { ErrorInterceptor } from '@auth/error.interceptor';
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],
-  providers: [ErrorInterceptor]
+  providers: [
+    AuthGuard,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ]
 })
 
 export class AppModule { }
