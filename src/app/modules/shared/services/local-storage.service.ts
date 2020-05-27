@@ -3,7 +3,7 @@ import { WindowService } from './window.service';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
-    private storage = this.wd.window().localStorage;
+    private storage = this.wd.window.localStorage;
     constructor(
         private wd: WindowService
     ) { }

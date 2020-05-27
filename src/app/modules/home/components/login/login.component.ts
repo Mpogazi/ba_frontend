@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         private auth: AuthService,
         private router: Router) {
 
-            if(this.auth.isLoggedIn) {
-                this.router.navigate(['/dashboard']);
-            }
+        if (this.auth.isLoggedIn) {
+            this.router.navigate(['dashboard']);
+        }
     }
 
     get f() { return this.loginForm.controls; }
@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log(this.returnUrl);
     }
 
     ngOnDestroy() {
@@ -54,14 +53,13 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (this.loginForm.invalid) {
             return;
         }
+
         this.loading = true;
         this.auth.login(this.loginForm.value)
             .pipe(first())
             .subscribe(
                 data => { this.router.navigate(['dashboard']); },
-                error => { 
-                    this.error = error; 
-                    this.loading = false; 
-                });
+                error => { this.error = error; this.loading = false; }
+            );
     }
 }

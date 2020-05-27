@@ -8,6 +8,9 @@ import {
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../utils/validators.util';
 import { AuthService } from '@auth/auth.service';
+import { Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
     selector: 'app-signup',
@@ -17,10 +20,21 @@ import { AuthService } from '@auth/auth.service';
 })
 export class SignupComponent implements OnInit, OnDestroy {
     public signupForm: FormGroup;
+    public loading = false;
+    public submitted = false;
+    public returnUrl: string;
+    public error = '';
+    private destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(private fb: FormBuilder,
-        private cd: ChangeDetectorRef,
-        private auth: AuthService) { }
+        private route: ActivatedRoute,
+        private auth: AuthService,
+        private router: Router) {
+
+        if (this.auth.isLoggedIn) {
+            this.router.navigate(['dashboard']);
+        }
+    }
 
     ngOnInit() {
         this.signupForm = this.fb.group({
@@ -30,9 +44,14 @@ export class SignupComponent implements OnInit, OnDestroy {
             confirmPassword: new FormControl('', Validators.required),
             lastName: new FormControl('', Validators.required)
         }, { validator: MustMatch('password', 'confirmPassword') });
+
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    ngOnDestroy() { }
+    ngOnDestroy() {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
+    }
 
     get f() {
         return this.signupForm.controls;
@@ -43,11 +62,18 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
 
     public signup() {
-        if (!this.signupForm.invalid && !this.signupForm.invalid) {
-            this.auth.signup(this.signupForm.value).subscribe(
-                (x: any) => console.log(x),
-                (e: any) => console.log("An error fuck!")
-            );
+        this.submitted = true;
+        // stop if form invalid
+        if (this.signupForm.invalid) {
+            return;
         }
+
+        this.loading = true;
+        this.auth.signup(this.signupForm.value)
+            .pipe(first())
+            .subscribe(
+                data => { this.router.navigate(['dashboard']); },
+                error => { this.error = error; this.loading = false; }
+            );
     }
 }

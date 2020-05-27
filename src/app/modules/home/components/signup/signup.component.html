@@ -3,31 +3,34 @@
         <div class="form-group">
             <div>
                 <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
-                    [ngClass]="{'invalid': f.email.errors}" autocomplete="no">
+                    [ngClass]="{'invalid': submitted && f.email.errors}" autocomplete="no">
             </div>
         </div>
         <div class="form-group">
             <div>
                 <input type="password" class="form-control" placeholder="password" formControlName="password"
-                    [ngClass]="{'invalid': f.password.errors}">
+                    [ngClass]="{'invalid': submitted && f.password.errors}">
             </div>
         </div>
         <div class="form-group">
             <div>
                 <input type="password" class="form-control" placeholder="confirm password"
-                    formControlName="confirmPassword" [ngClass]="{'invalid': f.confirmPassword.errors}">
+                    formControlName="confirmPassword" [ngClass]="{'invalid': submitted && f.confirmPassword.errors}">
             </div>
         </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="first name" formControlName="firstName"
-                [ngClass]="{'invalid': f.firstName.errors}">
+                [ngClass]="{'invalid': submitted && f.firstName.errors}">
         </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="last name" formControlName="lastName"
-                [ngClass]="{'invalid': f.lastName.errors}">
+                [ngClass]="{'invalid': submitted && f.lastName.errors}">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block">SIGN UP</button>
+            <button [disabled]="loading" type="submit" class="btn btn-success btn-block">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Signin
+            </button>
         </div>
     </form>
 </div>

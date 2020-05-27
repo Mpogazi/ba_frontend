@@ -5,7 +5,7 @@ import { HttpResponseModel, HttpRequestModel, HttpVerbs } from '@shared_services
 import { environment as env } from '@environment/environment';
 import { HttpService } from '@shared_services/http.service';
 import { LocalStorageService } from '@shared_services/local-storage.service';
-import { shareReplay, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { User } from '@shared_models/user.model';
 
 @Injectable({
@@ -16,9 +16,8 @@ export class AuthService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    constructor(private http: HttpService,
-        private localStore: LocalStorageService) {
-        this.currentUserSubject = new BehaviorSubject(this.localStore.get('currentUser'));
+    constructor(private http: HttpService, private loc: LocalStorageService) {
+        this.currentUserSubject = new BehaviorSubject<User>(this.loc.get('currentUser'));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -29,27 +28,28 @@ export class AuthService {
     public login(user: Object): Observable<HttpResponseModel> {
         return this.http.request(
             this.createReq(user, HttpVerbs.POST, [], env.apiUrl + '/login')).pipe(
-                tap(this.saveUser),
-                shareReplay()
-            );
-    }
-
-    private saveUser(res: HttpResponseModel) {
-        this.localStore.set('currentUser', res.data);
-        this.isLoggedIn = true;
-        this.currentUserSubject.next(res.data);
+                map(res => {
+                    this.loc.set('currentUser', res.data);
+                    this.currentUserSubject.next(res.data);
+                    this.isLoggedIn = true;
+                    return res;
+                }));
     }
 
     public signup(user: Object): Observable<HttpResponseModel> {
         return this.http.request(
             this.createReq(user, HttpVerbs.POST, [], env.apiUrl + '/signup')).pipe(
-                tap(this.saveUser),
-                shareReplay());
+                map(res => {
+                    this.loc.set('currentUser', res.data);
+                    this.currentUserSubject.next(res.data);
+                    this.isLoggedIn = true;
+                    return res;
+                }));
     }
 
     public logout(): void {
         this.isLoggedIn = false;
-        this.localStore.remove('currentUser');
+        localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
 
