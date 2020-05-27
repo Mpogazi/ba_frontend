@@ -12,16 +12,18 @@ import { AuthService } from './auth.service';
     providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private auth: AuthService, private router: Router) { }
 
-    canActivate(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): boolean {
-        if (!this.authService.isLoggedIn) {
-            this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const currUser = this.auth.userValue;
+        console.log(currUser);
+        if (currUser) {
+            // logged in so return true
+            return true;
         }
-        return this.authService.isLoggedIn;
+
+        this.router.navigate(['/home/login']);
+        return false;
     }
 
     canActivateChild(
