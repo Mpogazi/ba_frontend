@@ -1,5 +1,9 @@
 <section>
-		<app-header-component [navList]="navList"></app-header-component>
-		<router-outlet></router-outlet>
-		<app-footer-component></app-footer-component>
+	<app-header-component
+		[navList]="navList"
+		[home]="true"
+		[dashboard]="false"
+	></app-header-component>
+	<router-outlet></router-outlet>
+	<app-footer-component [stickyBottom]="true"></app-footer-component>
 </section>

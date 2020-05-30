@@ -1,36 +1,36 @@
-@import '../../app.component.scss';
+@import "../../app.component.scss";
 
 .home-components {
 	background-color: blue;
 }
 
 .ba_home__section {
-    color: white;
+	color: white;
 }
 
 .ba_home_body {
-    color: white;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: $ba_global__gutter;
+	color: white;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-top: $ba_global__gutter;
 }
 
 .ba-move__checkbox {
-    margin: 0px 20px 0px;
+	margin: 0px 20px 0px;
 }
 
 .ba_forms {
-    width: 280px;
+	width: 280px;
 }
 
 .ba_margins_vertical {
-    margin-top: 16px;
-    margin-bottom: 16px;
+	margin-top: 16px;
+	margin-bottom: 16px;
 }
 
 .ba_margins_horizontal {
-    margin-left: 10%;
-    margin-right: 10%;
+	margin-left: 10%;
+	margin-right: 10%;
 }
