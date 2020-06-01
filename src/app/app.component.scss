@@ -126,3 +126,10 @@ a.ba-links:hover {
     border-color: #dc3545;
     padding-right: calc(1.5em + .75rem);
 }
+
+.avatar__img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
