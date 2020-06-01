@@ -1,17 +1,15 @@
 <section>
-	<div class="container-fluid">
-		<app-header-component
-			[navList]="navList"
-			[dashboard]="true"
-			[home]="false"
-		></app-header-component>
-		<div id="sidebar"></div>
-		<div id="main">
-			<app-search-box></app-search-box>
-			<app-volume class="m-2"></app-volume>
-			<app-ownership-graph class="m-2"></app-ownership-graph>
-			<app-owners class="m-2"></app-owners>
-		</div>
+	<app-header-component
+		[navList]="navList"
+		[dashboard]="true"
+		[home]="false"
+	></app-header-component>
+	<div id="sidebar"></div>
+	<div id="main">
+		<app-search-box></app-search-box>
+		<app-volume class="m-2"></app-volume>
+		<app-ownership-graph class="m-2"></app-ownership-graph>
+		<app-owners class="m-2"></app-owners>
 		<app-footer-component [stickyBottom]="false"></app-footer-component>
 	</div>
 </section>
