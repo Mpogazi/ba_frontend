@@ -13,6 +13,7 @@ import { SearchBoxComponent } from "./components/search-box/search-box.component
 import { UnknownComponent } from "./components/unknown/unknown.component";
 import { VolumeComponent } from "./components/volume/volume.component";
 import { DashboardComponent } from "./dashboard.component";
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 const components = [
 	DashboardComponent,
@@ -21,6 +22,7 @@ const components = [
 	OwnershipGraphComponent,
 	OwnersComponent,
 	UnknownComponent,
+	SidenavComponent
 ];
 
 @NgModule({

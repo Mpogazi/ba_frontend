@@ -1,1 +1,43 @@
-@import '../../app.component.scss';
+@import "../../app.component.scss";
+
+$sidebar-width: 180px;
+
+.layout-container {
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	min-height: 93.4vh;
+	min-width: 100vw;
+}
+
+.scrollable {
+	overflow-y: auto;
+	overflow-x: 1;
+	flex: 1;
+}
+
+.columns {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-around;
+	align-items: stretch;
+}
+
+.main {
+	padding-top: 16px;
+	display: flex;
+	left: $sidebar-width;
+	flex-direction: 1;
+	flex-direction: column;
+	background-color: rgb(30, 30, 32);
+}
+
+.menu-sidebar {
+	color: white;
+	font-family: Open Sans, sans-serif;
+	font-size: 0.9375rem;
+	font-weight: 400;
+	line-height: 1.25rem;
+	width: $sidebar-width;
+	left: 0;
+}

@@ -4,14 +4,15 @@
 		[dashboard]="true"
 		[home]="false"
 	></app-header-component>
-	<div class="dashboard">
-		<div id="sidebar"></div>
-		<div id="main">
-			<!-- <app-search-box></app-search-box>
-			<app-volume class="m-2"></app-volume>
-			<app-ownership-graph class="m-2"></app-ownership-graph>
-			<app-owners class="m-2"></app-owners>
-			<app-footer-component [stickyBottom]="false"></app-footer-component> -->
+	<div class="layout-container">
+		<div class="menu-sidebar">
+				<app-sidenav></app-sidenav>
+		</div>
+		<div class="main">
+			<div class="columns">
+				<router-outlet></router-outlet>
+			</div>
+			<app-footer-component [stickyBottom]="false"></app-footer-component>
 		</div>
 	</div>
 </section>

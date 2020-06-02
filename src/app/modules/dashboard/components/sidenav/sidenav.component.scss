@@ -1,0 +1,38 @@
+@import "../../dashboard.component.scss";
+
+.menu-item:first-child {
+	border-top: none;
+}
+
+.menu-item {
+    border-bottom: 0px solid #151a30;
+}
+
+.menu-items {
+    list-style-type: none;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.menu-items li > * {
+    width: 100%;
+    padding: 12px 15px;
+}
+
+.menu-items a {
+    display: flex;
+}
+
+.menu-item i {
+    margin-right: 16px;
+}
+
+.menu-title {
+    font-size: 16px;
+}
+
+i.white {
+	color: white;
+}
