@@ -1,16 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	selector: "app-sidenav",
+	templateUrl: "./sidenav.component.html",
+	styleUrls: ["./sidenav.component.scss"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidenavComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
+	ngOnInit() {}
 
-  ngOnInit() {
-  }
-
+	private toggleSidenav() {
+		return false;
+	}
 }

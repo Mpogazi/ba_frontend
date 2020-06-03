@@ -36,3 +36,15 @@
 i.white {
 	color: white;
 }
+
+.menu-item a:hover i,
+.menu-item a:focus i {
+    color: red;
+    width: 20px;
+    height: 20px;
+}
+
+.menu-item a:hover,
+.menu-item a:focus {
+    color: red;
+}

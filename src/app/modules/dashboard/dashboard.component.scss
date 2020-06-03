@@ -1,6 +1,6 @@
 @import "../../app.component.scss";
 
-$sidebar-width: 180px;
+$sidebar-width: 200px;
 
 .layout-container {
 	display: flex;
@@ -40,4 +40,8 @@ $sidebar-width: 180px;
 	line-height: 1.25rem;
 	width: $sidebar-width;
 	left: 0;
+}
+
+.compacted {
+	width: 52px;
 }

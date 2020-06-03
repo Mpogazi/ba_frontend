@@ -3,7 +3,7 @@
 	class="navbar navbar-expand-md navbar-dark"
 >
 	<span class="navbar-brand">
-		<a *ngIf="dashboard" class="navbar-brand" routerLink="">
+		<a (click)="toggleSide()" *ngIf="dashboard" class="navbar-brand" routerLink="">
 			<i class="material-icons icon_align">menu</i>
 		</a>
 		<a class="navbar-brand" routerLink="">

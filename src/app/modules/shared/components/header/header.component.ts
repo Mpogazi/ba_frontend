@@ -8,28 +8,20 @@ import { Header } from "../../interfaces/header.interface";
 })
 export class HomeHeaderComponent {
 	public navbarOpen = false;
-	public sidebarOpen = false;
 	@Input() navList: Header[];
 	@Input() home: boolean;
 	@Input() dashboard: boolean;
-	@Output() open: EventEmitter<any> = new EventEmitter();
-	@Output() close: EventEmitter<any> = new EventEmitter();
+	@Output() toggle: EventEmitter<any> = new EventEmitter();
 
 	public toggleSide() {
-		if (this.sidebarOpen) {
-			this.sidebarOpen = !this.sidebarOpen;
-			this.close.emit("Close sidebar");
-		} else {
-			this.sidebarOpen = !this.sidebarOpen;
-			this.open.emit("Open sidebar");
-		}
+		this.toggle.emit();
 	}
 
 	public toggleNavbar() {
 		this.navbarOpen = !this.navbarOpen;
 	}
 
-	public trackByFn(item) {
+	public trackByFn(item: { name: any }) {
 		if (!item) {
 			return null;
 		}

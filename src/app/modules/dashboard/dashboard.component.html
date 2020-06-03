@@ -3,12 +3,13 @@
 		[navList]="navList"
 		[dashboard]="true"
 		[home]="false"
+		(toggle)="handleToggle($event)"
 	></app-header-component>
 	<div class="layout-container">
-		<div class="menu-sidebar">
-				<app-sidenav></app-sidenav>
+		<div class="menu-sidebar" id="sidenav">
+			<app-sidenav></app-sidenav>
 		</div>
-		<div class="main">
+		<div class="main" id="main">
 			<div class="columns">
 				<router-outlet></router-outlet>
 			</div>
