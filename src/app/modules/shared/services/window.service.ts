@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: "root" })
 export class WindowService {
-    private windowObj = window;
-    constructor() {}
+	private windowObj = window;
+	constructor() {}
 
-    get window(): Window {
-        return this.windowObj;
-    }
+	get window(): Window {
+		return this.windowObj;
+	}
 
-    public document(): Document {
-        return this.windowObj.document;
-    }
+	public document(): Document {
+		return this.windowObj.document;
+	}
 }

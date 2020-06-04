@@ -1,25 +1,25 @@
 export interface HttpResponseModel {
-    responseCode: string;
-    data: any;
+	responseCode: string;
+	data: any;
 }
 
 export enum HttpVerbs {
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-    DELETE = 'DELETE',
-    PATCH = 'PATCH',
-    HEAD = 'HEAD',
-    TRACE = 'TRACE',
-    OPTIONS = 'OPTIONS',
-    CONNECT = 'CONNECT'
+	GET = "GET",
+	POST = "POST",
+	PUT = "PUT",
+	DELETE = "DELETE",
+	PATCH = "PATCH",
+	HEAD = "HEAD",
+	TRACE = "TRACE",
+	OPTIONS = "OPTIONS",
+	CONNECT = "CONNECT",
 }
 
 export interface HttpRequestModel {
-    path: string;
-    method: string;
-    options: Header[];
-    body: any;
+	path: string;
+	method: string;
+	options: Header[];
+	body: any;
 }
 
 /**
@@ -27,6 +27,6 @@ export interface HttpRequestModel {
  * to add new headers to the request.
  */
 export interface Header {
-    key: string;
-    value: string;
+	key: string;
+	value: string;
 }

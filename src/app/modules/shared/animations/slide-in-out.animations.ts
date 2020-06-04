@@ -1,3 +1,9 @@
-import { trigger, state, animate, transition, style } from '@angular/animations';
+import {
+	trigger,
+	state,
+	animate,
+	transition,
+	style,
+} from "@angular/animations";
 
-export const slideInOutAnimations = 'Nothing yet!';
+export const slideInOutAnimations = "Nothing yet!";

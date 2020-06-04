@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OwnershipGraphComponent } from './ownership-graph.component';
+import { OwnershipGraphComponent } from "./ownership-graph.component";
 
-xdescribe('OwnershipGraphComponent', () => {
-  let component: OwnershipGraphComponent;
-  let fixture: ComponentFixture<OwnershipGraphComponent>;
+xdescribe("OwnershipGraphComponent", () => {
+	let component: OwnershipGraphComponent;
+	let fixture: ComponentFixture<OwnershipGraphComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ OwnershipGraphComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [OwnershipGraphComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(OwnershipGraphComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(OwnershipGraphComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

@@ -10,8 +10,4 @@ export class SidenavComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit() {}
-
-	private toggleSidenav() {
-		return false;
-	}
 }

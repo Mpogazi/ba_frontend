@@ -1,25 +1,37 @@
-@import '../../shared.component.scss';
+@import "../../shared.component.scss";
 
 .not_found {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .animated_elem {
-    color: red;
-    animation: error 1s step-end infinite;
+	color: red;
+	animation: error 1s step-end infinite;
 }
 
 @-webkit-keyframes error {
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0;}
-    100% { opacity: 1.0;}
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 @keyframes error {
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0;}
-    100% { opacity: 1.0;}
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

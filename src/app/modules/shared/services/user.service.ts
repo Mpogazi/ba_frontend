@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { environment } from '@environment/environment';
-import { User } from '@shared_models/user.model';
+import { Injectable } from "@angular/core";
+import { environment } from "@environment/environment";
+import { User } from "@shared_models/user.model";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 
 /**
  * A blocker: Need to choose whether I have to store the
@@ -14,5 +14,5 @@ import { User } from '@shared_models/user.model';
  *
  */
 export class UserService {
-    constructor() { }
+	constructor() {}
 }

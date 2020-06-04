@@ -1,26 +1,26 @@
-@import '../../shared.component.scss';
+@import "../../shared.component.scss";
 
 .ba_footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    color: white;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	color: white;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
 }
 
 .ba_footer_hr {
-    display: block;
-    height: 0.5px;
-    border: 0;
-    border-top: 1px solid #424242;
-    width: 980%;
+	display: block;
+	height: 0.5px;
+	border: 0;
+	border-top: 1px solid #424242;
+	width: 980%;
 }
 
 .ba_footer_fonts {
-    font-size: 16px;
-    font-weight: lighter;
-    font-stretch: expanded;
+	font-size: 16px;
+	font-weight: lighter;
+	font-stretch: expanded;
 }
