@@ -8,10 +8,6 @@ import { Observable, Subscription, fromEvent } from "rxjs";
 	styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-	public navList = [
-		{ link: "/dashboard", name: "Dashboard" },
-		{ link: "/home", name: "home" },
-	];
 	private resizeObservable$: Observable<Event>;
 	private subscription$: Subscription;
 	private compact = true;
