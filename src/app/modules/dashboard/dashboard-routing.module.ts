@@ -9,6 +9,7 @@ const routes: Routes = [
     {
         path: 'dashboard', 
         component: DashboardComponent,
+        children: [],
         canActivate:[AuthGuard]
     }
 ];
