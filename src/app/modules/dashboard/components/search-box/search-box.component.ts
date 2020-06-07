@@ -40,7 +40,6 @@ export class SearchBoxComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log("submitted");
 		this.submitted = true;
 		if (this.searchForm.invalid) {
 			return;

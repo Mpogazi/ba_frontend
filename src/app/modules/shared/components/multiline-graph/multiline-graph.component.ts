@@ -1,28 +1,25 @@
 import {
-	ChangeDetectionStrategy,
-	ChangeDetectorRef,
 	Component,
 	OnInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	ViewEncapsulation,
 } from "@angular/core";
-
 import * as d3Array from "d3-array";
 import * as d3Axis from "d3-axis";
 import * as d3Scale from "d3-scale";
 import * as d3 from "d3-selection";
 import * as d3Shape from "d3-shape";
 
-import { STOCKS } from "../../mocks/stocks.mock";
-
 @Component({
-	selector: "app-linechart-component",
+	selector: "app-multiline-graph",
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	templateUrl: "./line-chart.component.html",
-	styleUrls: ["./line-chart.component.scss"],
+	templateUrl: "./multiline-graph.component.html",
+	styleUrls: ["./multiline-graph.component.scss"],
 })
-export class LineChartComponent implements OnInit {
-	public title = "Line Chart";
+export class MultilineGraphComponent implements OnInit {
+	title = "multi line chart";
 
 	private margin = { top: 20, right: 20, bottom: 30, left: 50 };
 	private width: number;
@@ -30,20 +27,13 @@ export class LineChartComponent implements OnInit {
 	private x: any;
 	private y: any;
 	private svg: any;
-	private line: d3Shape.Line<[number, number]>;
 
 	constructor(private cd: ChangeDetectorRef) {
 		this.width = 900 - this.margin.left - this.margin.right;
 		this.height = 500 - this.margin.top - this.margin.bottom;
 	}
 
-	ngOnInit() {
-		this.initSvg();
-		this.initAxis();
-		this.drawAxis();
-		this.drawLine();
-		// this.cd.detectChanges();
-	}
+	ngOnInit() {}
 
 	private initSvg() {
 		this.svg = d3
@@ -54,14 +44,6 @@ export class LineChartComponent implements OnInit {
 				"translate(" + this.margin.left + "," + this.margin.top + ")"
 			);
 	}
-
-	private initAxis() {
-		this.x = d3Scale.scaleTime().range([0, this.width]);
-		this.y = d3Scale.scaleLinear().range([this.height, 0]);
-		this.x.domain(d3Array.extent(STOCKS, (d) => d.date));
-		this.y.domain(d3Array.extent(STOCKS, (d) => d.value));
-	}
-
 	private drawAxis() {
 		this.svg
 			.append("g")
@@ -80,18 +62,5 @@ export class LineChartComponent implements OnInit {
 			.attr("dy", ".71em")
 			.style("text-anchor", "end")
 			.text("Price ($)");
-	}
-
-	private drawLine() {
-		this.line = d3Shape
-			.line()
-			.x((d: any) => this.x(d.date))
-			.y((d: any) => this.y(d.value));
-
-		this.svg
-			.append("path")
-			.datum(STOCKS)
-			.attr("class", "line")
-			.attr("d", this.line);
 	}
 }

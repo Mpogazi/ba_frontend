@@ -12,6 +12,8 @@ import { PriceCandlesComponent } from "./components/price-candles/price-candles.
 
 import { SharedRoutingModule } from "./shared-routing.module";
 import { SharedComponent } from "./shared.component";
+import { MultilineGraphComponent } from './components/multiline-graph/multiline-graph.component';
+import { HistogramComponent } from './components/histogram/histogram.component';
 
 const components = [
 	SharedComponent,
@@ -20,6 +22,7 @@ const components = [
 	PriceCandlesComponent,
 	LineChartComponent,
 	NotfoundComponent,
+	HistogramComponent
 ];
 
 @NgModule({
