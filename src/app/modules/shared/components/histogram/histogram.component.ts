@@ -6,12 +6,10 @@ import {
 	ChangeDetectorRef,
 	ViewEncapsulation,
 } from "@angular/core";
-
-import * as d3Array from "d3-array";
 import * as d3Axis from "d3-axis";
 import * as d3Scale from "d3-scale";
-import * as d3 from 'd3';
-import { COTY } from '../../mocks/coty.mock';
+import * as d3 from "d3";
+import { COTY } from "../../mocks/coty.mock";
 
 @Component({
 	selector: "app-histogram-component",
@@ -29,7 +27,6 @@ export class HistogramComponent implements OnInit, OnDestroy {
 	private x: any;
 	private y: any;
 	private svg: any;
-	private histogram: any;
 
 	constructor(private cd: ChangeDetectorRef) {
 		this.width = 900 - this.margin.left - this.margin.right;
@@ -37,8 +34,7 @@ export class HistogramComponent implements OnInit, OnDestroy {
 	}
 	ngOnInit() {
 		this.initSvg();
-		this.initAxis();
-		this.drawAxis();
+		this.initHistogram(COTY);
 	}
 
 	private initSvg() {
@@ -51,43 +47,56 @@ export class HistogramComponent implements OnInit, OnDestroy {
 			);
 	}
 
-	private initAxis() {
-		this.x = d3Scale.scaleTime().range([0, this.width]);
-		this.y = d3Scale.scaleLinear().range([this.height, 0]);
-		this.x.domain(d3Array.extent(COTY, (d) => d.date));
-		this.y.domain(d3Array.extent(COTY, (d) => d.volume / 1000000));
-	}
+	private initHistogram(data: ArrayLike<any>) {
+		const first_day = data[0].date;
+		const last_day = data[data.length - 1].date;
+		const minVol = d3.min(data, (d) => d.volume);
+		const maxVol = d3.max(data, (d) => d.volume);
 
-	private drawAxis() {
+		this.y = d3Scale
+			.scaleLinear()
+			.domain([minVol, maxVol])
+			.range([this.height, 0]);
+
+		this.x = d3Scale
+			.scaleTime()
+			.domain([first_day, last_day])
+			.range([0, this.width]);
+
 		this.svg
 			.append("g")
-			.attr("transform", "translate(0," + this.height + ")")
-			.attr("y", -4)
-			.attr("y", this.width - this.margin.right)
-			.call(d3Axis.axisBottom(this.x).ticks(this.width / 80));
+			.attr("transform", `translate(0, ${this.height})`)
+			.call(d3Axis.axisBottom(this.x));
 
 		this.svg
 			.append("g")
-			.call(d3Axis.axisLeft(this.y).ticks(this.height / 80))
-			.select(".domain").remove()
-			.append("text")
-			.attr("transform", "rotate(-90)")
-			.attr("x", 4)
-			.attr("text-anchor", "start")
-			.attr("font-weight", "bold")
-			.attr("dy", ".61em");
-	}
+			.call(
+				d3.axisLeft(this.y).tickFormat((d: number) => {
+					return `${d / 1000000}M`;
+				})
+			)
+			.select(".domain")
+			.remove();
 
-	private drawHistogram() {
-		this.histogram = d3.histogram().value(COTY => COTY);
-		// const g = this.svg.append("g")
-		// 		.attr("fill", "steelblue")
-		// 		.selectAll("g")
-		// 		.data(COTY)
-		// 		.join("g")
-		// 			.attr("x", d => (d.volume) + 1)
-		// 			.attr("width", d => Math.max(0, this.x(d.date) - this.x(d.date) - 1))
-		// 			.attr("y", d => this.y(d.volume));
+		// The bars
+		this.svg
+			.selectAll()
+			.data(data)
+			.enter()
+			.append("rect")
+			.attr("x", (d: any) => this.x(d.date))
+			.attr("y", (d: any) => this.y(d.volume))
+			.attr("fill", (d: { close: number }, i: number) => {
+				if (i === 0) {
+					return "#03a678";
+				} else {
+					return data[i - 1].close > d.close ? "#c0392b" : "#03a678";
+				}
+			})
+			.attr("width", 1)
+			.attr("height", (d: { volume: any }) => {
+				return this.height - this.y(d.volume);
+			});
 	}
 
 	ngOnDestroy() {}
