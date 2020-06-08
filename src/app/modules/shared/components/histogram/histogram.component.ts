@@ -5,6 +5,7 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	ViewEncapsulation,
+	Input,
 } from "@angular/core";
 import * as d3Axis from "d3-axis";
 import * as d3Scale from "d3-scale";
@@ -22,8 +23,8 @@ export class HistogramComponent implements OnInit, OnDestroy {
 	public title = "Volume histogram";
 
 	private margin = { top: 20, right: 20, bottom: 30, left: 40 };
-	private width: number;
-	private height: number;
+	@Input() width: number;
+	@Input() height: number;
 	private x: any;
 	private y: any;
 	private svg: any;
