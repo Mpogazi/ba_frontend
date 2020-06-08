@@ -19,7 +19,7 @@ import { COTY } from "../../mocks/coty.mock";
 	styleUrls: ["./histogram.component.scss"],
 })
 export class HistogramComponent implements OnInit, OnDestroy {
-	public title = "Histogram";
+	public title = "Volume histogram";
 
 	private margin = { top: 20, right: 20, bottom: 30, left: 40 };
 	private width: number;
