@@ -21,19 +21,18 @@ import { COTY } from "../../mocks/coty.mock";
 })
 export class HistogramComponent implements OnInit, OnDestroy {
 	public title = "Volume histogram";
-
 	private margin = { top: 20, right: 20, bottom: 30, left: 40 };
-	@Input() width: number;
-	@Input() height: number;
+	private width: number;
+	private height: number;
 	private x: any;
 	private y: any;
 	private svg: any;
+	@Input() size: any;
 
-	constructor(private cd: ChangeDetectorRef) {
-		this.width = 900 - this.margin.left - this.margin.right;
-		this.height = 500 - this.margin.top - this.margin.bottom;
-	}
+	constructor(private cd: ChangeDetectorRef) {}
 	ngOnInit() {
+		this.width = this.size.w - this.margin.left - this.margin.right;
+		this.height = this.size.h - this.margin.top - this.margin.bottom;
 		this.initSvg();
 		this.initHistogram(COTY);
 	}
