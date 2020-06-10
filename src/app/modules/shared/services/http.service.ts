@@ -35,6 +35,15 @@ export class HttpService {
 				return throwError(new Error("Method not recognized!"));
 		}
 	}
+	
+	public createReq(body: Object, method: string, options: [], path: string) {
+		let req = {} as HttpRequestModel;
+		req.body = body;
+		req.method = method;
+		req.options = options;
+		req.path = path;
+		return req;
+	}	
 
 	private extractHeaders(req: HttpRequestModel): HttpHeaders {
 		const options = req.options;

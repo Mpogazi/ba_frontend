@@ -34,7 +34,12 @@ export class AuthService {
 	public login(user: Object): Observable<HttpResponseModel> {
 		return this.http
 			.request(
-				this.createReq(user, HttpVerbs.POST, [], env.apiUrl + "/login")
+				this.http.createReq(
+					user,
+					HttpVerbs.POST,
+					[],
+					env.apiUrl + "/login"
+				)
 			)
 			.pipe(
 				map((res) => {
@@ -49,7 +54,12 @@ export class AuthService {
 	public signup(user: Object): Observable<HttpResponseModel> {
 		return this.http
 			.request(
-				this.createReq(user, HttpVerbs.POST, [], env.apiUrl + "/signup")
+				this.http.createReq(
+					user,
+					HttpVerbs.POST,
+					[],
+					env.apiUrl + "/signup"
+				)
 			)
 			.pipe(
 				map((res) => {
@@ -65,14 +75,5 @@ export class AuthService {
 		this.isLoggedIn = false;
 		localStorage.removeItem("currentUser");
 		this.currentUserSubject.next(null);
-	}
-
-	private createReq(body: Object, method: string, options: [], path: string) {
-		let request = {} as HttpRequestModel;
-		request.body = body;
-		request.method = method;
-		request.options = options;
-		request.path = path;
-		return request;
 	}
 }
