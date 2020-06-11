@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
-import {
-	HttpResponseModel,
-	HttpRequestModel,
-	HttpVerbs,
-} from "@shared_services/http.model";
+import { HttpResponseModel, HttpVerbs } from "@shared_services/http.model";
 import { environment as env } from "@environment/environment";
 import { HttpService } from "./http.service";
 
@@ -12,9 +8,25 @@ import { HttpService } from "./http.service";
 export class CcassService {
 	constructor(private http: HttpService) {}
 
-	public historicalData$(): Observable<HttpResponseModel> {
+	public historicalData$(yfcode: string): Observable<HttpResponseModel> {
 		return this.http.request(
-			this.http.createReq({}, HttpVerbs.GET, [], env.apiUrl)
+			this.http.createReq(
+				{},
+				HttpVerbs.GET,
+				[],
+				env.apiUrl + "/historical_stock_info/" + yfcode
+			)
+		);
+	}
+
+	public staticStockInfo$(): Observable<HttpResponseModel> {
+		return this.http.request(
+			this.http.createReq(
+				{},
+				HttpVerbs.GET,
+				[],
+				env.apiUrl + "/static_stock_info"
+			)
 		);
 	}
 }

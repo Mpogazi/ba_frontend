@@ -1,11 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { Observable, BehaviorSubject } from "rxjs";
-import {
-	HttpResponseModel,
-	HttpRequestModel,
-	HttpVerbs,
-} from "@shared_services/http.model";
+import { HttpResponseModel, HttpVerbs } from "@shared_services/http.model";
 import { environment as env } from "@environment/environment";
 import { HttpService } from "@shared_services/http.service";
 import { LocalStorageService } from "@shared_services/local-storage.service";
