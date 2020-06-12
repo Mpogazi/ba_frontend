@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ParticlesModule } from "angular-particle";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { StoreModule } from "@ngrx/store";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -29,6 +30,7 @@ import { AuthService } from "@auth/auth.service";
 		HomeModule,
 		DashboardModule,
 		AppRoutingModule,
+		StoreModule.forRoot({}),
 	],
 	bootstrap: [AppComponent],
 	providers: [

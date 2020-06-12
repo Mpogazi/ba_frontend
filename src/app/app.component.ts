@@ -13,6 +13,11 @@ export class AppComponent implements OnInit {
 	public height = 100;
 
 	ngOnInit() {
+		this.makeStyles();
+		this.makeParams();
+	}
+
+	private makeStyles() {
 		this.myStyle = {
 			position: "fixed",
 			width: "100%",
@@ -23,22 +28,15 @@ export class AppComponent implements OnInit {
 			right: 0,
 			bottom: 0,
 		};
+	}
 
+	private makeParams() {
 		this.myParams = {
 			particles: {
-				number: {
-					value: 60,
-				},
-				color: {
-					value: "#ff0000",
-				},
-				shape: {
-					type: "circle",
-				},
-				opacity: {
-					value: 0.3,
-					random: false,
-				},
+				number: { value: 60 },
+				color: { value: "#ff0000" },
+				shape: { type: "circle" },
+				opacity: { value: 0.3, random: false },
 				line_linked: {
 					enable: true,
 					distance: 100,

@@ -6,6 +6,6 @@ import { map, mergeMap, catchError } from "rxjs/operators";
 import { CcassService } from "@shared_services/ccass.service";
 
 @Injectable()
-export class ccassEffects {
+export class CcassEffects {
 	constructor(private actions$: Actions, private ccass: CcassService) {}
 }

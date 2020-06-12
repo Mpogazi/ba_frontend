@@ -5,6 +5,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
+import { EffectsModule } from "@ngrx/effects";
+import { StoreModule } from "@ngrx/store";
 
 import { SharedModule } from "../shared/shared.module";
 import { OwnersComponent } from "./components/owners/owners.component";
@@ -14,6 +16,7 @@ import { UnknownComponent } from "./components/unknown/unknown.component";
 import { VolumeComponent } from "./components/volume/volume.component";
 import { DashboardComponent } from "./dashboard.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
+import { CcassEffects } from "./effects/ccass.effects";
 
 const components = [
 	DashboardComponent,
@@ -37,6 +40,8 @@ const components = [
 		DashboardRoutingModule,
 		SharedModule,
 		BrowserModule,
+		StoreModule,
+		EffectsModule.forFeature([CcassEffects]),
 	],
 })
 export class DashboardModule {}
