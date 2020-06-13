@@ -18,26 +18,24 @@ export interface StockModel {
 	ashare: string;
 }
 
-export interface CcassDate {
-	date: Date;
-}
-
+// Idk yet how often the info will be
+// updated. So I can't use the date, price,...
 export interface stockInfo {
-	id: number;
+	//id: number;
 	yf_code: string;
 	ccass_code: string;
-	date: Date;
+	//date: Date;
 	short_name: string;
 	long_name: string;
-	currency: string;
-	beta: number;
-	market_cap: number;
-	enter_val: number;
-	shares_outstanding: number;
-	shares_float: number;
-	adv10: number;
-	bid: number;
-	ask: number;
+	//currency: string;
+	//beta: number;
+	//market_cap: number;
+	//enter_val: number;
+	//shares_outstanding: number;
+	//shares_float: number;
+	//adv10: number;
+	//bid: number;
+	//ask: number;
 }
 
 export interface historicalInfo {

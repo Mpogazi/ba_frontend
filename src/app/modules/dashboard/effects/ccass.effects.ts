@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
 import { map, mergeMap, catchError } from "rxjs/operators";
 
-import { CcassService } from "@shared_services/ccass.service";
+import { CcassService } from "src/app/modules/dashboard/services/ccass.service";
 
 @Injectable()
 export class CcassEffects {

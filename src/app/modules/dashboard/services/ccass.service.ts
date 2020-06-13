@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
 import { HttpResponseModel, HttpVerbs } from "@shared_services/http.model";
 import { environment as env } from "@environment/environment";
-import { HttpService } from "./http.service";
+import { HttpService } from "@shared_services/http.service";
 
 @Injectable({ providedIn: "root" })
 export class CcassService {
