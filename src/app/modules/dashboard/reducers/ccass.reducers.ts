@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import {} from "../actions/ccass.actions";
+import * as ccassActions from "../actions/ccass.actions";
 import * as models from "@shared_models/ccass.model";
 
 export const ccassFeatureKey = "ccass";
@@ -16,4 +16,15 @@ export const initialState: State = {
 	ownership: {},
 };
 
-export const ccassReducer = createReducer(initialState);
+const ccassReducer = createReducer(
+	initialState,
+	on(ccassActions.historicalDataGet, (state) => ({ ...state })),
+	on(ccassActions.staticDataGet, (state) => ({ ...state })),
+	on(ccassActions.staticDataSearch, (state) => ({ ...state })),
+	on(ccassActions.ownershipGet, (state) => ({ ...state })),
+	on(ccassActions.ownershipSearch, (state) => ({ ...state }))
+);
+
+export function reducer(state: State | undefined, action: Action) {
+	return ccassReducer(state, action);
+}

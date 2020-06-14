@@ -17,7 +17,7 @@ import { VolumeComponent } from "./components/volume/volume.component";
 import { DashboardComponent } from "./dashboard.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { CcassEffects } from "./effects/ccass.effects";
-import { ccassFeatureKey, ccassReducer } from "./reducers/ccass.reducers";
+import * as ccassReducer from "./reducers/ccass.reducers";
 
 const components = [
 	DashboardComponent,
@@ -41,7 +41,10 @@ const components = [
 		DashboardRoutingModule,
 		SharedModule,
 		BrowserModule,
-		StoreModule.forFeature(ccassFeatureKey, ccassReducer),
+		StoreModule.forFeature(
+			ccassReducer.ccassFeatureKey,
+			ccassReducer.reducer
+		),
 		EffectsModule.forFeature([CcassEffects]),
 	],
 })
