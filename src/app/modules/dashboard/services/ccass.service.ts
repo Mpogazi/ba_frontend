@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
 import { HttpResponseModel, HttpVerbs } from "@shared_services/http.model";
 import { environment as env } from "@environment/environment";
 import { HttpService } from "@shared_services/http.service";

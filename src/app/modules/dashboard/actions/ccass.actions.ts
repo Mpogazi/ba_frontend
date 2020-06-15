@@ -15,3 +15,4 @@ export const ownershipGet = createAction(
 	"[dashboard page] getOwnership",
 	props<{ yfcode: string }>()
 );
+export const testAction = createAction("[dashboard page] test");

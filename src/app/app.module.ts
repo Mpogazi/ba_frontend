@@ -6,7 +6,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ParticlesModule } from "angular-particle";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { StoreModule } from "@ngrx/store";
+import { StoreModule, Store } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -31,6 +33,11 @@ import { AuthService } from "@auth/auth.service";
 		DashboardModule,
 		AppRoutingModule,
 		StoreModule.forRoot({}),
+		EffectsModule.forRoot(),
+		StoreDevtoolsModule.instrument({
+			name: "Bowen App DevTools",
+			maxAge: 25,
+		}),
 	],
 	bootstrap: [AppComponent],
 	providers: [

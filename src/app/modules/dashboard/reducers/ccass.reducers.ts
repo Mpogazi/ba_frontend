@@ -8,12 +8,14 @@ export interface State {
 	static_data: { [key: string]: models.stockInfo };
 	historical_data: { [key: string]: any };
 	ownership: { [key: string]: any };
+	test: number;
 }
 
 export const initialState: State = {
 	static_data: {},
 	historical_data: {},
 	ownership: {},
+	test: 0,
 };
 
 const ccassReducer = createReducer(
@@ -22,7 +24,8 @@ const ccassReducer = createReducer(
 	on(ccassActions.staticDataGet, (state) => ({ ...state })),
 	on(ccassActions.staticDataSearch, (state) => ({ ...state })),
 	on(ccassActions.ownershipGet, (state) => ({ ...state })),
-	on(ccassActions.ownershipSearch, (state) => ({ ...state }))
+	on(ccassActions.ownershipSearch, (state) => ({ ...state })),
+	on(ccassActions.testAction, (state) => ({ ...state, test: state.test + 1 }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

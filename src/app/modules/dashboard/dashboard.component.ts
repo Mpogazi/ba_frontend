@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { WindowService } from "@shared_services/window.service";
 import { Observable, Subscription, fromEvent } from "rxjs";
+import { Store, select } from "@ngrx/store";
 
 @Component({
 	selector: "app-dashboard",
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	private subscription$: Subscription;
 	private compact = true;
 
-	constructor(private wd: WindowService) {}
+	constructor(private wd: WindowService, private store: Store) {}
 
 	ngOnInit() {
 		this.enlargeMain();
