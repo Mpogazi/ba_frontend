@@ -7,7 +7,7 @@ $sidebar-width: 200px;
 	flex: 1;
 	flex-direction: row;
 	min-height: 93.4vh;
-	min-width: 100vw;
+	min-width: 96vw;
 }
 
 .scrollable {
@@ -44,4 +44,9 @@ $sidebar-width: 200px;
 
 .compacted {
 	width: 52px;
+}
+
+.row {
+	min-height: 100px;
+	margin-left: 16px;
 }

@@ -47,6 +47,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		let width = this.wd.window.innerWidth;
 		let elem = this.wd.window.document.getElementById("main");
 		elem.style.left = `${offset}`;
-		elem.style.width = `${width - offset}px`;
+		elem.style.width = `${width - offset - 12}px`;
 	}
 }
