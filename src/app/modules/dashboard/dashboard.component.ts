@@ -34,11 +34,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	private toggle() {
 		if (this.compact) {
-			document.getElementById("sidenav").classList.remove("compacted");
+			this.rmClass("sidenav", "compacted");
 		} else {
-			document.getElementById("sidenav").classList.add("compacted");
+			this.addClass("sidenav", "compacted");
 		}
 		this.compact = !this.compact;
+	}
+
+	private addClass(id: string, cls: string) {
+		this.wd.window.document.getElementById(id).classList.add(cls);
+	}
+
+	private rmClass(id: string, cls: string) {
+		this.wd.window.document.getElementById(id).classList.remove(cls);
 	}
 
 	private enlargeMain() {
@@ -47,6 +55,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		let width = this.wd.window.innerWidth;
 		let elem = this.wd.window.document.getElementById("main");
 		elem.style.left = `${offset}`;
-		elem.style.width = `${width - offset - 12}px`;
+		elem.style.width = `${width - offset - 15}px`;
 	}
 }

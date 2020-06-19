@@ -6,8 +6,7 @@ $sidebar-width: 200px;
 	display: flex;
 	flex: 1;
 	flex-direction: row;
-	min-height: 93.4vh;
-	min-width: 96vw;
+	min-height: 88.4vh;
 }
 
 .scrollable {
@@ -47,6 +46,9 @@ $sidebar-width: 200px;
 }
 
 .row {
-	min-height: 100px;
+	min-height: 160px;
 	margin-left: 16px;
+	margin-right: 16px;
+	margin-bottom: 16px;
+	background-color: $ba-light-background;
 }
