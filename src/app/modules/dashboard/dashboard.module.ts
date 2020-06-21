@@ -18,9 +18,11 @@ import { DashboardComponent } from "./dashboard.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { CcassEffects } from "./effects/ccass.effects";
 import * as ccassReducer from "./reducers/ccass.reducers";
+import { HomeWrapperComponent } from "./components/home-wrapper/home-wrapper.component";
 
 const components = [
 	DashboardComponent,
+	HomeWrapperComponent,
 	SearchBoxComponent,
 	VolumeComponent,
 	OwnershipGraphComponent,
