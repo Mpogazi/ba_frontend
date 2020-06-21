@@ -1,1 +1,25 @@
 @import "../../dashboard.component.scss";
+
+.structure {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	margin-bottom: 16px;
+}
+
+.sub-cat {
+	background-color: black;
+	width: 49%;
+	min-height: 120px;
+	margin-right: 16px;
+}
+
+@media screen and (max-width: 1160px) {
+	.sub-cat {
+		width: 100%;
+		margin-bottom: 16px;
+		min-height: 120px;
+		margin-right: 0px;
+	}
+}
