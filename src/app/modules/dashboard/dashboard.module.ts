@@ -9,8 +9,6 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 
 import { SharedModule } from "../shared/shared.module";
-import { OwnersComponent } from "./components/owners/owners.component";
-import { OwnershipGraphComponent } from "./components/ownership-graph/ownership-graph.component";
 import { SearchBoxComponent } from "./components/search-box/search-box.component";
 import { UnknownComponent } from "./components/unknown/unknown.component";
 import { VolumeComponent } from "./components/volume/volume.component";
@@ -19,16 +17,18 @@ import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { CcassEffects } from "./effects/ccass.effects";
 import * as ccassReducer from "./reducers/ccass.reducers";
 import { HomeWrapperComponent } from "./components/home-wrapper/home-wrapper.component";
+import { PriceComponent } from "./components/price/price.component";
+import { CcassSharesComponent } from "./components/ccass-shares/ccass-shares.component";
 
 const components = [
 	DashboardComponent,
 	HomeWrapperComponent,
 	SearchBoxComponent,
 	VolumeComponent,
-	OwnershipGraphComponent,
-	OwnersComponent,
 	UnknownComponent,
 	SidenavComponent,
+	PriceComponent,
+	CcassSharesComponent,
 ];
 
 @NgModule({

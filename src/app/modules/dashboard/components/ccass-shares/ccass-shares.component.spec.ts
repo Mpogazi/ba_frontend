@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OwnersComponent } from "./owners.component";
+import { CcassSharesComponent } from "./ccass-shares.component";
 
-xdescribe("OwnersComponent", () => {
-	let component: OwnersComponent;
-	let fixture: ComponentFixture<OwnersComponent>;
+describe("CcassSharesComponent", () => {
+	let component: CcassSharesComponent;
+	let fixture: ComponentFixture<CcassSharesComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [OwnersComponent],
+			declarations: [CcassSharesComponent],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(OwnersComponent);
+		fixture = TestBed.createComponent(CcassSharesComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

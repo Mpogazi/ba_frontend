@@ -2,7 +2,7 @@
 
 .structure {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: wrap-reverse;
 	justify-content: space-between;
 	align-items: stretch;
 	margin-bottom: 16px;
@@ -27,6 +27,10 @@
 	background-color: green;
 	color: black;
 	height: 29px;
+}
+
+.larger {
+	font-size: 24px;
 }
 
 @media screen and (min-width: 1060px) {

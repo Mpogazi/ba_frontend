@@ -5,7 +5,7 @@
 			>{{ static.short_name }} ({{ static.yf_code }})
 			<button class="button_off" id="watchlist"></button
 		></span>
-		<p>{{ static.bid }}</p>
+		<p class="larger">{{ static.bid | currency: "USD" }}</p>
 	</div>
 	<div class="sub-cat">
 		<input name="search" placeholder="search" />

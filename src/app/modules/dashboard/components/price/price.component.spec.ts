@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OwnershipGraphComponent } from "./ownership-graph.component";
+import { PriceComponent } from "./price.component";
 
-xdescribe("OwnershipGraphComponent", () => {
-	let component: OwnershipGraphComponent;
-	let fixture: ComponentFixture<OwnershipGraphComponent>;
+describe("PriceComponent", () => {
+	let component: PriceComponent;
+	let fixture: ComponentFixture<PriceComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [OwnershipGraphComponent],
+			declarations: [PriceComponent],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(OwnershipGraphComponent);
+		fixture = TestBed.createComponent(PriceComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
