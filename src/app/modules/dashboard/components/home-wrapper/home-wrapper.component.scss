@@ -10,16 +10,27 @@
 
 .sub-cat {
 	background-color: black;
-	width: 49%;
+	width: 100%;
 	min-height: 120px;
-	margin-right: 16px;
+	padding: 16px;
 }
 
-@media screen and (max-width: 1160px) {
+.button_off {
+	border-radius: 50%;
+	color: green;
+	background-color: black;
+	border-color: black;
+}
+
+.button_on {
+	border-radius: 50%;
+	background-color: green;
+	color: black;
+	height: 29px;
+}
+
+@media screen and (min-width: 1060px) {
 	.sub-cat {
-		width: 100%;
-		margin-bottom: 16px;
-		min-height: 120px;
-		margin-right: 0px;
+		width: 49%;
 	}
 }

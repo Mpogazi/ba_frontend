@@ -21,7 +21,18 @@ export class HomeWrapperComponent implements OnInit {
 		bid: 52.43,
 		ask: 53.45,
 	};
+
 	constructor() {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.watchlisted("None", ["None"]);
+	}
+
+	private watchlisted(stock: string, watchlist: string[]) {
+		if (watchlist.indexOf(stock) === -1) {
+			document.getElementById("watchlist").innerHTML = "+";
+		} else {
+			document.getElementById("watchlist").innerHTML = "&#10003;";
+		}
+	}
 }
