@@ -5,17 +5,19 @@
 			>{{ static.short_name }} ({{ static.yf_code }})
 			<button class="button_off" id="watchlist"></button
 		></span>
-		<p class="larger">{{ static.bid | currency: "USD" }}</p>
+		<p class="larger">{{ static.bid | currency: 'USD' }}</p>
 	</div>
 	<div class="sub-cat">
 		<input name="search" placeholder="search" />
 	</div>
 </div>
 <div class="row structure">
-	<div class="sub-cat"></div>
-	<div class="sub-cat"></div>
+	<div class="sub-cat longer" id="elem1">
+		<app-linechart-component [w]="gWidth" [h]="gHeight"></app-linechart-component>
+	</div>
+	<div class="sub-cat longer"></div>
 </div>
 <div class="row structure">
-	<div class="sub-cat"></div>
-	<div class="sub-cat"></div>
+	<div class="sub-cat longer"></div>
+	<div class="sub-cat longer"></div>
 </div>
